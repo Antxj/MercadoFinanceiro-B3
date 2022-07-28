@@ -31,9 +31,8 @@ else:
     print(f'Sistema Operacional {my_os} não identificado.')
     exit()
 
-
 # Auto push Github
-COMMIT_MESSAGE = f'PI4: Auto update {intervalo/60:.2f} minutos'
+COMMIT_MESSAGE = f'PI4: Auto update {intervalo / 60:.2f} minutos'
 
 
 def git_push():
@@ -50,8 +49,8 @@ def git_push():
 
 # Criar README.md
 def criar_readme():
-        leitura = open("README.md", "w", encoding="cp1252")
-        leitura.write(conteudo.readme_conteudo)
+    leitor = open("README.md", "w", encoding="cp1252")
+    leitor.write(conteudo.readme_conteudo)
 
 
 def atualizar():
@@ -77,20 +76,15 @@ def atualizar():
     # file = pd.read_csv('resultado/dadosfiis.csv', sep=";", decimal='.')
     # file.to_html("html/tabelafiis.html")
 
+    # Teste
+    criar_readme()
+
     # Push
     git_push()
 
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
-    # Teste
-    criar_readme()
-
 
 schedule(atualizar, interval=intervalo)
 run_loop()
-
-
-
-
-
