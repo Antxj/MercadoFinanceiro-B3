@@ -73,6 +73,7 @@ def git_push():
 def criar_readme():
     leitor = open(r"README.md", "w", encoding="cp1252")
     leitor.write(readme_conteudo)
+    leitor.close()
     print("Readme.md: OK.")
 
 
