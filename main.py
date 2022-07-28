@@ -40,15 +40,17 @@ Exemplo de uso no Googlesheets:
 """
 
 
-# Pasta .git de acordo com o OS
+# Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
     PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
     pythonz = 'python'
+    print(f'{my_os} identificado.')
 elif my_os == 'Linux':
     PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
     pythonz = 'python3'
+    print(f'{my_os} identificado.')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
     exit()
