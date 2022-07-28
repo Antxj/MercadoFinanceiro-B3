@@ -6,7 +6,7 @@ import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
-import schedule
+
 
 # Intervalo atualização
 intervalo = 5  # 14400s = 4h / 7200s = 2h
@@ -101,7 +101,6 @@ def atualizar():
     print(f'Última atualização: {last_update}.')
 
 
-# schedule(atualizar, interval=intervalo)
-# run_loop()
-schedule.every(intervalo).minutes.do(atualizar())
+schedule(atualizar, interval=intervalo)
+run_loop()
 
