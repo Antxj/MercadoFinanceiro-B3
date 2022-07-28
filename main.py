@@ -85,11 +85,11 @@ def atualizar():
 
 
 
+schedule(criar_readme, interval=intervalo)
 schedule(atualizar, interval=intervalo)
 run_loop()
 
-schedule(criar_readme, interval=intervalo)
-run_loop()
+
 
 
 
