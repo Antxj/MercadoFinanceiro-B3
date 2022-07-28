@@ -95,6 +95,8 @@ def atualizar():
         leitor = open("README.md", "w", encoding="cp1252")
         leitor.write(readme_conteudo)
 
+    criar_readme()
+
     # Push
     git_push()
 
