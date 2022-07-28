@@ -92,7 +92,7 @@ def atualizar():
 
     # Criar README.md
     def criar_readme():
-        leitor = open("README.md", "w", encoding="cp1252")
+        leitor = open("README.md", "w+", encoding="cp1252")
         leitor.write(readme_conteudo)
 
     criar_readme()
