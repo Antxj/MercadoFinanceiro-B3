@@ -4,7 +4,6 @@ import requests
 import datetime
 from ischedule import schedule, run_loop
 import fontedados  # gitignore na fonte dos dados.
-import conteudo
 from git import Repo
 import os
 import platform
@@ -49,7 +48,7 @@ def git_push():
 
 
 def criar_readme():
-    leitor = open("README.md", "w+", encoding="cp1252")
+    leitor = open("README.md", "w", encoding="cp1252")
     leitor.write(readme_conteudo)
     print("Readme.md: OK.")
 
