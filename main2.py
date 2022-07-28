@@ -1,3 +1,4 @@
+import datetime
 import pandas as pd
 import requests
 from ischedule import schedule, run_loop
@@ -6,6 +7,9 @@ import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
+
+# Intervalo atualização
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 
 # Pasta .git de acordo com o OS
 my_os = platform.system()  # Windows / Linux
@@ -21,7 +25,7 @@ else:
     exit()
 
 # Auto push no Github
-COMMIT_MESSAGE = f'PI4: Auto update em: {conteudo.intervalo / 60:.2f} minutos'
+COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 
 def git_push():
@@ -50,17 +54,26 @@ def ler_csv():
     pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
 
 
+# Lendo e salvando os arquivos .csv
+def criar_readme():
+    leitor = open("README.md", "w")  # encoding="cp1252" testar
+    leitor.write(conteudo.readme_conteudo)
+    leitor.close()
+    print('Readme.md: OK.')
+
+
 # Atualizador em loop
 def atualizar():
+    agora = datetime.datetime.now()
+    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
     baixar_csv()
     ler_csv()
-    import conteudo
-    conteudo.criar_readme()
+    criar_readme()
     git_push()
     print('Auto update: OK.')
-    print(f'Atualização a cada {conteudo.intervalo / 60:.2f} minutos')
-    print(f'Última atualização: {conteudo.last_update}.')
+    print(f'Atualização a cada {intervalo / 60:.2f} minutos')
+    print(f'Última atualização: {last_update}.')
 
 
-schedule(atualizar, interval=conteudo.intervalo)
+schedule(atualizar, interval=intervalo)
 run_loop()

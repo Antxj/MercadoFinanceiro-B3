@@ -1,9 +1,4 @@
-import datetime
-
-# Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
-agora = datetime.datetime.now()
-last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+from main import intervalo, last_update
 
 readme_conteudo = f"""
 # StatusInvest - Dados
@@ -30,8 +25,4 @@ Exemplo de uso no Googlesheets:
 """
 
 
-def criar_readme():
-    leitor = open("README.md", "w")  # encoding="cp1252" testar
-    leitor.write(readme_conteudo)
-    leitor.close()
-    print('Readme.md: OK.')
+
