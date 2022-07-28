@@ -99,7 +99,5 @@ def atualizar():
     print(f'Última atualização: {last_update}.')
 
 
-
-
 schedule(atualizar, interval=intervalo)
 run_loop()
