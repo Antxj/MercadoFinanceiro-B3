@@ -83,6 +83,7 @@ def ler_csv():
 
 # Lendo e salvando os arquivos .csv
 def criar_readme():
+    global readme_conteudo
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
@@ -102,5 +103,4 @@ def atualizar():
 
 schedule(atualizar, interval=intervalo)
 run_loop()
-
 
