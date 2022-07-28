@@ -1,7 +1,5 @@
-import time
 import pandas as pd
 import requests
-import datetime
 from ischedule import schedule, run_loop
 import conteudo
 import fontedados  # gitignore na fonte dos dados.
@@ -38,24 +36,26 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-def atualizar():
-    # Baixando o arquivos .csv
+# Baixando o arquivos .csv
+def baixar_csv():
     response = requests.get(fontedados.url_acoes)
     open("resultado/dadosacoes.csv", "wb").write(response.content)
     response = requests.get(fontedados.url_fiis)
     open("resultado/dadosfiis.csv", "wb").write(response.content)
 
-    # Lendo e salvando os arquivos .csv
+
+# Lendo e salvando os arquivos .csv
+def ler_csv():
     pd.read_csv(r'resultado/dadosacoes.csv', sep=";", decimal='.')
     pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
 
-    # Quando executou
+
+# Atualizador em loop
+def atualizar():
+    baixar_csv()
+    ler_csv()
     conteudo.lastupdate()
-
-    # Readme.md
     conteudo.criar_readme()
-
-    # Push
     git_push()
     print('Auto update: OK.')
     print(f'Atualização a cada {conteudo.intervalo / 60:.2f} minutos')
