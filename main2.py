@@ -103,4 +103,5 @@ def atualizar():
 
 schedule(atualizar, interval=intervalo)
 run_loop()
+os.execl(sys.executable, 'main2', __file__, *sys.argv[1:])
 
