@@ -47,7 +47,6 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-
 def atualizar():
     # Baixando o arquivos .csv
     response = requests.get(fontedados.url_acoes)
