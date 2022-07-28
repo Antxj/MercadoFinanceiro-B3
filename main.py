@@ -1,18 +1,19 @@
-import time
+import datetime
 import pandas as pd
 import requests
-import datetime
 from ischedule import schedule, run_loop
 import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
 
+
 # Intervalo atualização
-intervalo = 60  # 14400s = 4h / 7200s = 2h
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
+# README.MD
 readme_conteudo = f"""
 # StatusInvest - Dados
 Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada {intervalo / 60:.2f} minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
@@ -36,6 +37,7 @@ Exemplo de uso no Googlesheets:
 ![img_2.png](exemplo.png)
 
 """
+
 
 # Pasta .git de acordo com o OS
 my_os = platform.system()  # Windows / Linux
@@ -66,6 +68,21 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
+# Baixando o arquivos .csv
+def baixar_csv():
+    response = requests.get(fontedados.url_acoes)
+    open("resultado/dadosacoes.csv", "wb").write(response.content)
+    response = requests.get(fontedados.url_fiis)
+    open("resultado/dadosfiis.csv", "wb").write(response.content)
+
+
+# Lendo e salvando os arquivos .csv
+def ler_csv():
+    pd.read_csv(r'resultado/dadosacoes.csv', sep=";", decimal='.')
+    pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
+
+
+# Lendo e salvando os arquivos .csv
 def criar_readme():
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
@@ -73,25 +90,11 @@ def criar_readme():
     print('Readme.md: OK.')
 
 
+# Atualizador em loop
 def atualizar():
-    # Baixando o arquivos .csv
-    response = requests.get(fontedados.url_acoes)
-    open("resultado/dadosacoes.csv", "wb").write(response.content)
-    response = requests.get(fontedados.url_fiis)
-    open("resultado/dadosfiis.csv", "wb").write(response.content)
-
-    # Lendo e salvando os arquivos .csv
-    pd.read_csv(r'resultado/dadosacoes.csv', sep=";", decimal='.')
-    pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
-
-    # Quando executou
-    agora = datetime.datetime.now()
-    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-
-    # Readme.md
+    baixar_csv()
+    ler_csv()
     criar_readme()
-
-    # Push
     git_push()
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')

@@ -99,8 +99,8 @@ def atualizar():
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
+    os.system('python "C:/Users/Dreker/PycharmProjects/StatusInvestDados/main2.py"')
 
 
 schedule(atualizar, interval=intervalo)
 run_loop()
-
