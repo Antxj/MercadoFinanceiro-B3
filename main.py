@@ -75,6 +75,7 @@ def criar_readme():
     leitor.write(readme_conteudo)
     leitor.close()
     print("Readme.md: OK.")
+    return leitor
 
 
 def atualizar():
