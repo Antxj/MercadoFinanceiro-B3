@@ -13,6 +13,7 @@ import platform
 intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+readme_conteudo = 'Carregando, aguarde.'
 
 # Pastas .git do repositório
 PATH_OF_GIT_REPO_WIN = os.getcwd() + '\.git'
@@ -45,6 +46,12 @@ def git_push():
         print('Push: OK.')
     except:
         print('Deu erro na hora do push!')
+
+
+def criar_readme():
+    leitor = open("README.md", "w+", encoding="cp1252")
+    leitor.write(readme_conteudo)
+    print("Readme.md: OK.")
 
 
 def atualizar():
@@ -89,11 +96,6 @@ def atualizar():
 
     """
 
-    # Criar README.md
-    def criar_readme():
-        leitor = open("README.md", "w+", encoding="cp1252")
-        leitor.write(readme_conteudo)
-        print("Readme.md: OK.")
 
     # Push
     criar_readme()
