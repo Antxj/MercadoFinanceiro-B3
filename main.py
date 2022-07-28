@@ -45,10 +45,10 @@ my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
     PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
-    print(f'Pasta .git no {my_os}: {PATH_OF_GIT_REPO}')
+    pythonz = 'python'
 elif my_os == 'Linux':
     PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
-    print(f'Pasta .git no {my_os}: {PATH_OF_GIT_REPO}')
+    pythonz = 'python3'
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
     exit()
@@ -102,7 +102,7 @@ def atualizar():
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
-    os.system(f'python "{pyfile}"')  # Restart .py
+    os.system(f'{pythonz} "{pyfile}"')  # Restart .py
 
 
 schedule(atualizar, interval=intervalo)
