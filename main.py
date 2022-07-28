@@ -4,6 +4,7 @@ import requests
 import datetime
 from ischedule import schedule, run_loop
 import fontedados  # gitignore na fonte dos dados.
+import conteudo
 from git import Repo
 import os
 import platform
@@ -12,7 +13,6 @@ import platform
 intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-import conteudo
 
 # Pastas .git do repositório
 PATH_OF_GIT_REPO_WIN = os.getcwd() + '\.git'
@@ -83,9 +83,10 @@ def atualizar():
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
+    # Teste
+    criar_readme()
 
 
-schedule(criar_readme, interval=intervalo)
 schedule(atualizar, interval=intervalo)
 run_loop()
 
