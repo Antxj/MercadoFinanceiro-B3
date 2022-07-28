@@ -2,7 +2,7 @@ import datetime
 import pandas as pd
 import requests
 from ischedule import schedule, run_loop
-import conteudo
+from conteudo import readme_conteudo
 import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
@@ -57,7 +57,7 @@ def ler_csv():
 # Lendo e salvando os arquivos .csv
 def criar_readme():
     leitor = open("README.md", "w")  # encoding="cp1252" testar
-    leitor.write(conteudo.readme_conteudo)
+    leitor.write(readme_conteudo)
     leitor.close()
     print('Readme.md: OK.')
 
