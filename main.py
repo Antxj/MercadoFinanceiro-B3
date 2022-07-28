@@ -66,11 +66,11 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-def criar_readme():
-    leitor = open("README.md", "w")  # encoding="cp1252" testar
-    leitor.write(readme_conteudo)
-    leitor.close()
-    print("Readme.md: OK.")
+# def criar_readme():
+#     leitor = open("README.md", "w")  # encoding="cp1252" testar
+#     leitor.write(readme_conteudo)
+#     leitor.close()
+#     print("Readme.md: OK.")
 
 
 def atualizar():
@@ -89,9 +89,12 @@ def atualizar():
     last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
     # Push
-    criar_readme()
+    leitor = open("README.md", "w")  # encoding="cp1252" testar
+    leitor.write(readme_conteudo)
+    leitor.close()
+    print("Readme.md: OK.")
+    # criar_readme()
     git_push()
-
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
