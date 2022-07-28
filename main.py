@@ -121,6 +121,7 @@ def atualizar():
 
     # Push
     tester()
+    time.sleep(5)
     criar_readme()
     time.sleep(5)
     git_push()
