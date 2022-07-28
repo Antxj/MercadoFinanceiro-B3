@@ -17,7 +17,7 @@ readme_conteudo = f"""
 # StatusInvest - Dados
 Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada x minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
 
-Atualização automática em: {intervalo/60:.2f} minutos. <br>
+Atualização automática em: {intervalo / 60:.2f} minutos. <br>
 <br>Última atualização: {last_update}.  <br>
 
 
@@ -37,24 +37,22 @@ Exemplo de uso no Googlesheets:
 
 """
 
-# Pastas .git do repositório
-PATH_OF_GIT_REPO_WIN = os.getcwd() + '\.git'
-PATH_OF_GIT_REPO_LINUX = os.getcwd() + '/.git'
-
-# Checando Sistema Operacional
+# Pasta .git de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
     print(f'Sistema Operacional: {my_os}')
-    PATH_OF_GIT_REPO = PATH_OF_GIT_REPO_WIN
+    PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
+    print(f'Pasta .git: {PATH_OF_GIT_REPO}')
 elif my_os == 'Linux':
     print(f'Sistema Operacional: {my_os}')
-    PATH_OF_GIT_REPO = PATH_OF_GIT_REPO_LINUX
+    PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
+    print(f'Pasta .git: {PATH_OF_GIT_REPO}')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
     exit()
 
-# Auto push Github
+# Auto push no Github
 COMMIT_MESSAGE = f'PI4: Auto update {intervalo / 60:.2f} minutos'
 
 
@@ -75,7 +73,10 @@ def criar_readme():
     leitor.write(readme_conteudo)
     leitor.close()
     print("Readme.md: OK.")
-    return leitor
+
+
+# Teste
+criar_readme()
 
 
 def atualizar():
@@ -107,5 +108,3 @@ def atualizar():
 
 schedule(atualizar, interval=intervalo)
 run_loop()
-
-
