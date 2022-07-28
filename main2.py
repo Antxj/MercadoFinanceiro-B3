@@ -54,7 +54,6 @@ def ler_csv():
 def atualizar():
     baixar_csv()
     ler_csv()
-    conteudo.lastupdate()
     conteudo.criar_readme()
     git_push()
     print('Auto update: OK.')
