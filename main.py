@@ -71,9 +71,6 @@ def atualizar():
     agora = datetime.datetime.now()
     last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
-    # Criar README.md
-    #criar_readme()
-
     # Csv -> Html table (TO DO)
     # file = pd.read_csv('resultado/dadosacoes.csv', sep=";", decimal='.')
     # file.to_html("html/tabelaacoes.html")
@@ -87,10 +84,10 @@ def atualizar():
     print(f'Última atualização: {last_update}.')
 
 
-time.sleep(2)
+
 schedule(atualizar, interval=intervalo)
-time.sleep(2)
+schedule(criar_readme, interval=intervalo)
 run_loop()
-time.sleep(2)
+
 
 
