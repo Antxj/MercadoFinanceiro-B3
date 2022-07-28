@@ -9,7 +9,7 @@ import os
 import platform
 
 # Intervalo atualização
-intervalo = 1  # 14400s = 4h / 7200s = 2h
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 import conteudo
@@ -86,6 +86,8 @@ def atualizar():
 
 
 schedule(atualizar, interval=intervalo)
+run_loop()
+
 schedule(criar_readme, interval=intervalo)
 run_loop()
 
