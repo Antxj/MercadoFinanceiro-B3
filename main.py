@@ -93,10 +93,10 @@ def atualizar():
     def criar_readme():
         leitor = open("README.md", "w+", encoding="cp1252")
         leitor.write(readme_conteudo)
-
-    criar_readme()
+        print("Readme.md: OK.")
 
     # Push
+    criar_readme()
     git_push()
 
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
