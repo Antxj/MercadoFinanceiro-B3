@@ -57,8 +57,7 @@ def atualizar():
     pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
 
     # Quando executou
-    agora = datetime.datetime.now()
-    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+    conteudo.lastupdate()
 
     # Readme.md
     criar_readme()

@@ -1,8 +1,15 @@
 import datetime
 # Intervalo atualização
 intervalo = 5  # 14400s = 4h / 7200s = 2h
+
+# Last update
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+
+def lastupdate():
+    agora = datetime.datetime.now()
+    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+
 
 readme_conteudo = f"""
 # StatusInvest - Dados
