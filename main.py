@@ -51,7 +51,7 @@ else:
     exit()
 
 # Auto push no Github
-COMMIT_MESSAGE = f'PI4: Auto update {intervalo / 60:.2f} minutos'
+COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 
 def git_push():
@@ -70,8 +70,8 @@ def git_push():
 #     leitor = open("README.md", "w")  # encoding="cp1252" testar
 #     leitor.write(readme_conteudo)
 #     leitor.close()
-#     print("Readme.md: OK.")
-
+#
+#
 
 def atualizar():
     # Baixando o arquivos .csv
@@ -88,12 +88,13 @@ def atualizar():
     agora = datetime.datetime.now()
     last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
-    # Push
+    # Teste
+    tester = readme_conteudo
     leitor = open("README.md", "w")  # encoding="cp1252" testar
-    leitor.write(readme_conteudo)
+    leitor.write(tester)
     leitor.close()
-    print("Readme.md: OK.")
-    # criar_readme()
+
+    # Push
     git_push()
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
