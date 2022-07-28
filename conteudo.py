@@ -1,10 +1,3 @@
-import datetime
-
-# Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
-agora = datetime.datetime.now()
-last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-
 readme_conteudo = f"""
 # StatusInvest - Dados
 Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada {intervalo / 60:.2f} minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
@@ -28,6 +21,3 @@ Exemplo de uso no Googlesheets:
 ![img_2.png](exemplo.png)
 
 """
-
-
-
