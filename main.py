@@ -13,6 +13,7 @@ import platform
 intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
+conteudo = conteudo.readme_conteudo
 
 # Pastas .git do repositório
 PATH_OF_GIT_REPO_WIN = os.getcwd() + '\.git'
@@ -50,7 +51,7 @@ def git_push():
 # Criar README.md
 def criar_readme():
     leitor = open("README.md", "w", encoding="cp1252")
-    leitor.write(conteudo.readme_conteudo)
+    leitor.write(conteudo)
 
 
 def atualizar():
