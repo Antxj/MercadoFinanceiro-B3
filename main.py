@@ -81,7 +81,7 @@ def atualizar():
     [FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosfiis.csv) <br>
 
 
-    Exemplo de uso no Googlesheets:
+    Exemplo de uso no Googlesheets: X
     ```sh
     =IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv";";";"pt_BR")
     ```
