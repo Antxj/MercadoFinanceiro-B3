@@ -1,11 +1,15 @@
-import main
+import datetime
+# Intervalo atualização
+intervalo = 5  # 14400s = 4h / 7200s = 2h
+agora = datetime.datetime.now()
+last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
 readme_conteudo = f"""
 # StatusInvest - Dados
-Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada x minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
+Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada {intervalo / 60:.2f} minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
 
-Atualização automática em: {main.intervalo/60:.2f} minutos. <br>
-Última atualização: {main.last_update}
+Atualização automática em: {intervalo / 60:.2f} minutos. <br>
+<br>Última atualização: {last_update}.  <br>
 
 
 >Resultados: <br>
@@ -23,5 +27,3 @@ Exemplo de uso no Googlesheets:
 ![img_2.png](exemplo.png)
 
 """
-
-
