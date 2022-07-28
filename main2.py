@@ -9,7 +9,7 @@ import os
 import platform
 
 # Intervalo atualização
-intervalo = 60  # 14400s = 4h / 7200s = 2h
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -40,7 +40,7 @@ def f1():
     """
 
     def f2():
-        leitor = open("README.md", "w")  # encoding="cp1252" testar
+        leitor = open("README.md", "w", encoding="cp1252")  # encoding="cp1252" testar
         leitor.write(readme_conteudo)
         leitor.close()
         print('Readme.md: OK.')
