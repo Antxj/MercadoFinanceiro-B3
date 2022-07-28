@@ -104,6 +104,8 @@ def atualizar():
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
-
+time.sleep(3)
 schedule(atualizar, interval=intervalo)
+time.sleep(3)
 run_loop()
+time.sleep(3)
