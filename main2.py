@@ -99,7 +99,7 @@ def atualizar():
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
-    os.execv('main2.py', sys.argv)
+    os.execv('self', sys.argv)
 
 
 schedule(atualizar, interval=intervalo)
