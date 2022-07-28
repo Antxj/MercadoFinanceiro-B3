@@ -71,7 +71,8 @@ def git_push():
 #     leitor.write(readme_conteudo)
 #     leitor.close()
 #
-#
+tester = readme_conteudo
+
 
 def atualizar():
     # Baixando o arquivos .csv
