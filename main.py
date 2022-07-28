@@ -9,7 +9,7 @@ import os
 import platform
 
 # Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
+intervalo = 15  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -41,13 +41,11 @@ Exemplo de uso no Googlesheets:
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
-    print(f'Sistema Operacional: {my_os}')
     PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
-    print(f'Pasta .git: {PATH_OF_GIT_REPO}')
+    print(f'Pasta .git no {my_os}: {PATH_OF_GIT_REPO}')
 elif my_os == 'Linux':
-    print(f'Sistema Operacional: {my_os}')
     PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
-    print(f'Pasta .git: {PATH_OF_GIT_REPO}')
+    print(f'Pasta .git no {my_os}: {PATH_OF_GIT_REPO}')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
     exit()
@@ -69,14 +67,10 @@ def git_push():
 
 
 def criar_readme():
-    leitor = open("README.md", "w", encoding="cp1252")
+    leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
     print("Readme.md: OK.")
-
-
-# Teste
-criar_readme()
 
 
 def atualizar():
@@ -84,9 +78,7 @@ def atualizar():
     response = requests.get(fontedados.url_acoes)
     open("resultado/dadosacoes.csv", "wb").write(response.content)
     response = requests.get(fontedados.url_fiis)
-    time.sleep(2)
     open("resultado/dadosfiis.csv", "wb").write(response.content)
-    time.sleep(2)
 
     # Lendo e salvando os arquivos .csv
     pd.read_csv(r'resultado/dadosacoes.csv', sep=";", decimal='.')
@@ -98,7 +90,6 @@ def atualizar():
 
     # Push
     criar_readme()
-    time.sleep(5)
     git_push()
 
     print('Auto update: OK.')
