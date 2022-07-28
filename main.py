@@ -37,6 +37,7 @@ Exemplo de uso no Googlesheets:
 
 """
 
+
 # Pastas .git do repositório
 PATH_OF_GIT_REPO_WIN = os.getcwd() + '\.git'
 PATH_OF_GIT_REPO_LINUX = os.getcwd() + '/.git'
@@ -93,18 +94,16 @@ def atualizar():
     agora = datetime.datetime.now()
     last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
-
-
-
     # Push
     criar_readme()
+    time.sleep(5)
     git_push()
 
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
-time.sleep(3)
+
 schedule(atualizar, interval=intervalo)
-time.sleep(3)
 run_loop()
-time.sleep(3)
+
+
