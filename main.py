@@ -7,6 +7,7 @@ from git import Repo
 import os
 import platform
 
+print('Iniciando...')
 
 # Intervalo atualização
 intervalo = 5  # 14400s = 4h / 7200s = 2h
@@ -106,4 +107,3 @@ def atualizar():
 
 schedule(atualizar, interval=intervalo)
 run_loop()
-
