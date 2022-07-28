@@ -2,14 +2,11 @@ import datetime
 import pandas as pd
 import requests
 from ischedule import schedule, run_loop
-from conteudo import readme_conteudo
+from conteudo import readme_conteudo, intervalo, last_update
 import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
-
-# Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
 
 # Pasta .git de acordo com o OS
 my_os = platform.system()  # Windows / Linux
