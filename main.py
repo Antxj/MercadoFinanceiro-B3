@@ -106,3 +106,4 @@ def atualizar():
 
 schedule(atualizar, interval=intervalo)
 run_loop()
+
