@@ -6,7 +6,7 @@ intervalo = 5  # 14400s = 4h / 7200s = 2h
 def last_update():
     agora = datetime.datetime.now()
     last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-    print(f'{last_update}')
+    print(f' 1 {last_update}')
 
 
 last_update()
