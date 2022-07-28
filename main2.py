@@ -90,6 +90,8 @@ def criar_readme():
     print('Readme.md: OK.')
 
 
+pyfile = __file__
+
 # Atualizador em loop
 def atualizar():
     baixar_csv()
@@ -99,7 +101,7 @@ def atualizar():
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
-    os.system('python "__file__"')  # Restart .py
+    os.system(f'python "{pyfile}"')  # Restart .py
 
 
 schedule(atualizar, interval=intervalo)
