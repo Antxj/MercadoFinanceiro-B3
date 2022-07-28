@@ -96,6 +96,7 @@ def atualizar():
 
     # Push
     criar_readme()
+    time.sleep(5)
     git_push()
 
     print('Auto update: OK.')
