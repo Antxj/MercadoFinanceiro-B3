@@ -97,6 +97,7 @@ def atualizar():
     criar_readme()
     git_push()
 
+    print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 

@@ -3,7 +3,7 @@
 Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada x minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
 
 Atualização automática em: 0.17 minutos. <br>
-Última atualização: 28-07-2022 ás 12:10:09.
+Última atualização: 28-07-2022 ás 12:13:48.
 
 
 >Resultados: <br>
