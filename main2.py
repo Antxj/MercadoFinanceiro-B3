@@ -6,6 +6,7 @@ import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
+import schedule
 
 # Intervalo atualização
 intervalo = 5  # 14400s = 4h / 7200s = 2h
@@ -83,8 +84,6 @@ def ler_csv():
 
 # Lendo e salvando os arquivos .csv
 def criar_readme():
-    agora = datetime.datetime.now()
-    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
@@ -102,6 +101,7 @@ def atualizar():
     print(f'Última atualização: {last_update}.')
 
 
-schedule(atualizar, interval=intervalo)
-run_loop()
+# schedule(atualizar, interval=intervalo)
+# run_loop()
+schedule.every(intervalo).minutes.do(atualizar())
 
