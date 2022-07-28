@@ -9,7 +9,7 @@ import os
 import platform
 
 # Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
+intervalo = 10  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -28,7 +28,7 @@ Atualização automática em: {intervalo/60:.2f} minutos. <br>
 [FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosfiis.csv) <br>
 
 
-Exemplo de uso no Googlesheets: x
+Exemplo de uso no Googlesheets:
 ```sh
 =IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv";";";"pt_BR")
 ```
