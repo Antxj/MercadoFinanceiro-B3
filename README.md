@@ -1,14 +1,14 @@
 
 # StatusInvest - Dados
-Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada 0.08 minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
+InformaÃ§Ãµes das AÃ§Ãµes e dos FII's listados na StatusInvest atualizadas a cada 0.08 minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
 
-Atualização automática em: 0.08 minutos. <br>
-<br>Última atualização: 28-07-2022 ás 17:40:49.  <br>
+AtualizaÃ§Ã£o automÃ¡tica em: 0.08 minutos. <br>
+<br>Ãšltima atualizaÃ§Ã£o: 28-07-2022 Ã¡s 17:42:40.  <br>
 
 
 >Resultados: <br>
-[Ações - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=313887204&single=true) <br>
-[Ações - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv) <br>
+[AÃ§Ãµes - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=313887204&single=true) <br>
+[AÃ§Ãµes - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv) <br>
 [FII's - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=1741348998&single=true) <br>
 [FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosfiis.csv) <br>
 
