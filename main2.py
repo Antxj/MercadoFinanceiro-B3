@@ -47,6 +47,7 @@ def f1():
     f2()
 
 
+
 # Pasta .git de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
