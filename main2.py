@@ -6,7 +6,7 @@ import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
-import importlib
+import sys
 
 # Intervalo atualização
 intervalo = 5  # 14400s = 4h / 7200s = 2h
@@ -99,8 +99,10 @@ def atualizar():
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
-    importlib.reload(datetime)
+    os.execv(__file__, sys.argv)
+
 
 
 schedule(atualizar, interval=intervalo)
 run_loop()
+
