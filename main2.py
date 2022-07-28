@@ -38,13 +38,6 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-def criar_readme():
-    leitor = open("README.md", "w")  # encoding="cp1252" testar
-    leitor.write(conteudo.readme_conteudo)
-    leitor.close()
-    print('Readme.md: OK.')
-
-
 def atualizar():
     # Baixando o arquivos .csv
     response = requests.get(fontedados.url_acoes)
@@ -60,7 +53,7 @@ def atualizar():
     conteudo.lastupdate()
 
     # Readme.md
-    criar_readme()
+    conteudo.criar_readme()
 
     # Push
     git_push()

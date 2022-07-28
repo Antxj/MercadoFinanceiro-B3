@@ -34,3 +34,10 @@ Exemplo de uso no Googlesheets:
 ![img_2.png](exemplo.png)
 
 """
+
+
+def criar_readme():
+    leitor = open("README.md", "w")  # encoding="cp1252" testar
+    leitor.write(readme_conteudo)
+    leitor.close()
+    print('Readme.md: OK.')
