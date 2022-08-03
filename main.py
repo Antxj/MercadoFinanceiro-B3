@@ -10,7 +10,7 @@ import platform
 print('Carregando...')
 
 # Intervalo atualização
-intervalo = 600  # 14400s = 4h / 7200s = 2h
+intervalo = 10  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -105,6 +105,7 @@ def atualizar():
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
     os.system(f'{pythonz} "{pyfile}"')  # Restart .py
+    quit()
 
 
 schedule(atualizar, interval=intervalo)
