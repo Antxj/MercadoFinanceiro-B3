@@ -10,7 +10,7 @@ import platform
 print('Carregando...')
 
 # Intervalo atualização
-intervalo = 300  # 14400s = 4h / 7200s = 2h
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -95,19 +95,7 @@ def criar_readme():
 
 pyfile = __file__
 
-# Loop direto no Pi4 via contrab
-baixar_csv()
-ler_csv()
-criar_readme()
-git_push()
-print('Auto update: OK.')
-print(f'Atualização a cada {intervalo / 60:.2f} minutos')
-print(f'Última atualização: {last_update}.')
-quit()
-# Loop direto no Pi4 via contrab
-
-
-# Atualizador em loop via python
+# Atualizador em loop
 def atualizar():
     baixar_csv()
     ler_csv()
