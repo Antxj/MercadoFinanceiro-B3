@@ -6,6 +6,7 @@ import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
+import gc
 
 print('Carregando...')
 
@@ -93,30 +94,27 @@ def criar_readme():
     print('Readme.md: OK.')
 
 
+# Tentando aliviar memoria TESTE
+def limparmem():
+    print('Liberando memória: OK.')
+    gc.collect()
+
+
 pyfile = __file__
 
-# Loop direto no Pi4 via contrab
-baixar_csv()
-ler_csv()
-criar_readme()
-git_push()
-print('Auto update: OK.')
-print(f'Atualização a cada {intervalo / 60:.2f} minutos')
-print(f'Última atualização: {last_update}.')
-quit()
-# Loop direto no Pi4 via contrab
 
-
-# Atualizador em loop via python
+# Atualizador em loop
 def atualizar():
     baixar_csv()
     ler_csv()
     criar_readme()
-    #git_push()
+    git_push()
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
+    limparmem()
     os.system(f'{pythonz} "{pyfile}"')  # Restart .py
+    quit()
 
 
 schedule(atualizar, interval=intervalo)
