@@ -1,17 +1,18 @@
+###### já fiz o gitinit, testar daqui pra frente, bora
+
 import datetime
 import pandas as pd
 import requests
-from ischedule import schedule, run_loop
 import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
-import gc
+import time
 
 print('Carregando...')
 
 # Intervalo atualização
-intervalo = 3600  # 14400s = 4h / 7200s = 2h
+intervalo = 5  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
@@ -40,17 +41,14 @@ Exemplo de uso no Googlesheets:
 
 """
 
-
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
     PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
-    pythonz = 'python'
     print(f'{my_os} identificado.')
 elif my_os == 'Linux':
     PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
-    pythonz = 'python3'
     print(f'{my_os} identificado.')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
@@ -86,7 +84,7 @@ def ler_csv():
     pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
 
 
-# Lendo e salvando os arquivos .csv
+# Criando README.md
 def criar_readme():
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
@@ -94,28 +92,36 @@ def criar_readme():
     print('Readme.md: OK.')
 
 
-# Tentando aliviar memoria TESTE
-def limparmem():
-    print('Liberando memória: OK.')
-    gc.collect()
+def tester():
+    agora = datetime.datetime.now()
+    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
 
-pyfile = __file__
-
-
-# Atualizador em loop
 def atualizar():
     baixar_csv()
     ler_csv()
+    tester()
     criar_readme()
     git_push()
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
-    limparmem()
-    os.system(f'{pythonz} "{pyfile}"')  # Restart .py
-    quit()
 
 
-schedule(atualizar, interval=intervalo)
-run_loop()
+# Rodar em loop
+i = 0
+
+
+def loop():
+    global i
+    print(i)
+    i += 1
+    time.sleep(intervalo)
+    atualizar()
+    if i == 0:
+        print('Fechando...')
+        exit()
+
+
+while True:
+    loop()
