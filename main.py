@@ -12,7 +12,7 @@ import time
 print('Carregando...')
 
 # Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h
+intervalo = 3600  # 14400s = 4h / 7200s = 2h
 agora = datetime.datetime.now()
 last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
 
