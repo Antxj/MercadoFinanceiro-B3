@@ -111,7 +111,7 @@ def loop():
     i += 1
     time.sleep(intervalo)
     atualizar()
-    if i == 3:
+    if i == 0:
         print('Encerrando...')
         exit()
 
