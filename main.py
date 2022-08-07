@@ -1,5 +1,3 @@
-###### já fiz o gitinit, testar daqui pra frente, bora
-
 import datetime
 import pandas as pd
 import requests
@@ -9,46 +7,23 @@ import os
 import platform
 import time
 
-print('Carregando...')
+print('Iniciando...')
 
 # Intervalo atualização
-intervalo = 3600  # 14400s = 4h / 7200s = 2h
-agora = datetime.datetime.now()
-last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-
-# README.MD
-readme_conteudo = f"""
-# StatusInvest - Dados
-Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada {intervalo / 60:.2f} minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
-
-Atualização automática em: {intervalo / 60:.2f} minutos. <br>
-<br>Última atualização: {last_update}.  <br>
-
-
->Resultados: <br>
-[Ações - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=313887204&single=true) <br>
-[Ações - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv) <br>
-[FII's - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=1741348998&single=true) <br>
-[FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosfiis.csv) <br>
-
-
-Exemplo de uso no Googlesheets:
-```sh
-=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv";";";"pt_BR")
-```
-
-![img_2.png](exemplo.png)
-
-"""
+intervalo = 20  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
+     
 
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
-    PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
+    PATH_OF_GIT_REPO = os.getcwd(
+    ) + '\.git'  # Pastas .git do repositório no Windows
     print(f'{my_os} identificado.')
 elif my_os == 'Linux':
-    PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
+    PATH_OF_GIT_REPO = os.getcwd(
+    ) + '/.git'  # Pastas .git do repositório no Linux
     print(f'{my_os} identificado.')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
@@ -86,21 +61,43 @@ def ler_csv():
 
 # Criando README.md
 def criar_readme():
+    last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
+    # README.MD
+    readme_conteudo = f"""
+# StatusInvest - Dados
+Informações das Ações e dos FII's listados na StatusInvest atualizadas a cada {intervalo / 60:.2f} minutos rodando em um [Raspberry Pi 4 Model B](https://www.raspberrypi.com/) que estava parado.
+
+Atualização automática em: {intervalo / 60:.2f} minutos. <br>
+<br>Última atualização: {last_update}.  <br>
+
+
+>Resultados: <br>
+[Ações - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=313887204&single=true) <br>
+[Ações - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv) <br>
+[FII's - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=1741348998&single=true) <br>
+[FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosfiis.csv) <br>
+
+
+Exemplo de uso no Googlesheets:
+```sh
+=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv";";";"pt_BR")
+```
+
+![img_2.png](exemplo.png)
+
+"""
+    
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
     print('Readme.md: OK.')
 
 
-def tester():
-    agora = datetime.datetime.now()
-    last_update = agora.strftime("%d-%m-%Y ás %H:%M:%S")
-
-
+# Atualizar tudo
 def atualizar():
+    last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
     baixar_csv()
     ler_csv()
-    tester()
     criar_readme()
     git_push()
     print('Auto update: OK.')
@@ -114,7 +111,7 @@ i = 0
 
 def loop():
     global i
-    print(i)
+    print(f' ###### Execução nº: {i} ######')
     i += 1
     time.sleep(intervalo)
     atualizar()
