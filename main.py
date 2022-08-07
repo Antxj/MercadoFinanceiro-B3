@@ -7,23 +7,19 @@ import os
 import platform
 import time
 
-print('Iniciando...')
-
 # Intervalo atualização
 intervalo = 1800  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
-
+     
 
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
 if my_os == 'Windows':
-    PATH_OF_GIT_REPO = os.getcwd(
-    ) + '\.git'  # Pastas .git do repositório no Windows
+    PATH_OF_GIT_REPO = os.getcwd() + '\.git'  # Pastas .git do repositório no Windows
     print(f'{my_os} identificado.')
 elif my_os == 'Linux':
-    PATH_OF_GIT_REPO = os.getcwd(
-    ) + '/.git'  # Pastas .git do repositório no Linux
+    PATH_OF_GIT_REPO = os.getcwd() + '/.git'  # Pastas .git do repositório no Linux
     print(f'{my_os} identificado.')
 else:
     print(f'Sistema Operacional {my_os} não identificado.')
@@ -115,8 +111,8 @@ def loop():
     i += 1
     time.sleep(intervalo)
     atualizar()
-    if i == 0:
-        print('Fechando...')
+    if i == 3:
+        print('Encerrando...')
         exit()
 
 
