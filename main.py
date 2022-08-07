@@ -10,9 +10,9 @@ import time
 print('Iniciando...')
 
 # Intervalo atualização
-intervalo = 20  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+intervalo = 1800  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
-     
+
 
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
