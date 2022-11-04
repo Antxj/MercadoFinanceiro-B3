@@ -1,5 +1,4 @@
 import datetime
-import pandas as pd
 from git import Repo
 import os
 import platform
@@ -45,7 +44,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 # Intervalo atualização
-intervalo = 30  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+intervalo = 60  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
      
 # Pasta .git e python de acordo com o OS
@@ -102,12 +101,6 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-# Lendo e salvando os arquivos .csv
-# def ler_csv():
-#     pd.read_csv('dadosacoes.csv', sep=";", decimal='.')
-#     pd.read_csv('dadosfiis.csv', sep=";", decimal='.')
-
-
 # Criando README.md
 def criar_readme():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
@@ -146,7 +139,6 @@ Exemplo de uso no Googlesheets:
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
     baixar_csv()
-    # ler_csv()
     criar_readme()
     git_push()
     print('Auto update: OK.')
