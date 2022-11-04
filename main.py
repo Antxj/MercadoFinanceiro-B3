@@ -1,17 +1,53 @@
 import datetime
 import pandas as pd
-import requests
-import fontedados  # gitignore na fonte dos dados.
 from git import Repo
 import os
 import platform
 import time
 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
+
+# URL's
+url_acoes = 'https://cutt.ly/SNJ91NB'
+url_fiis = 'https://cutt.ly/5NZHSCQ'
+
+# Pasta de download
+full_path = os.path.realpath(__file__)
+download_folder = (os.path.dirname(full_path))
+# print(f'O arquivo será salvo em {download_folder}')
+
+# Chrome
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
+servico = Service(ChromeDriverManager().install())
+chrome_options = webdriver.ChromeOptions()
+# chrome_options.add_argument("--headless")  # Headless mode
+# chrome_options.add_argument(rf'--user-data-dir={configs.path_chrome}')  # Funciona mas expira e d� trabalho.
+# chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
+# chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--disable-notifications")
+chrome_options.add_argument("--disable-popup-blocking")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--ignore-certificate-errors')
+
+prefs = {f"download.default_directory": f"{download_folder}"}
+chrome_options.add_experimental_option("prefs", prefs)
+navegador = webdriver.Chrome(service=servico, options=chrome_options)
+
 # Intervalo atualização
-intervalo = 1800  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+intervalo = 30  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
      
-
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
@@ -29,6 +65,33 @@ else:
 COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 
+# Baixando o arquivos .csv
+def baixar_csv():
+    # Baixando o csv de ações
+    navegador.get(f'{url_acoes}')
+    time.sleep(5)
+
+    # Renomeando o csv de ações
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosacoes.csv'
+    os.remove('dadosacoes.csv')
+    time.sleep(2)
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
+
+    # Baixando o csv de FIIs
+    navegador.get(f'{url_fiis}')
+    time.sleep(5)
+
+    # Renomeando o csv de FIIs
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosfiis.csv'
+    os.remove('dadosfiis.csv')
+    time.sleep(2)
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
+
+
 def git_push():
     try:
         repo = Repo(PATH_OF_GIT_REPO)
@@ -41,18 +104,10 @@ def git_push():
         print('Deu erro na hora do push!')
 
 
-# Baixando o arquivos .csv
-def baixar_csv():
-    response = requests.get(fontedados.url_acoes)
-    open("resultado/dadosacoes.csv", "wb").write(response.content)
-    response = requests.get(fontedados.url_fiis)
-    open("resultado/dadosfiis.csv", "wb").write(response.content)
-
-
 # Lendo e salvando os arquivos .csv
-def ler_csv():
-    pd.read_csv(r'resultado/dadosacoes.csv', sep=";", decimal='.')
-    pd.read_csv(r'resultado/dadosfiis.csv', sep=";", decimal='.')
+# def ler_csv():
+#     pd.read_csv('dadosacoes.csv', sep=";", decimal='.')
+#     pd.read_csv('dadosfiis.csv', sep=";", decimal='.')
 
 
 # Criando README.md
@@ -93,7 +148,7 @@ Exemplo de uso no Googlesheets:
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
     baixar_csv()
-    ler_csv()
+    # ler_csv()
     criar_readme()
     git_push()
     print('Auto update: OK.')
