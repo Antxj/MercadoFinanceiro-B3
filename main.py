@@ -75,7 +75,6 @@ def baixar_csv():
     original = 'statusinvest-busca-avancada.csv'
     correto = 'dadosacoes.csv'
     os.remove('dadosacoes.csv')
-    time.sleep(2)
     os.rename(original, correto)
     print(f" O arquivo {original} foi renomeado para {correto}")
 
@@ -87,7 +86,6 @@ def baixar_csv():
     original = 'statusinvest-busca-avancada.csv'
     correto = 'dadosfiis.csv'
     os.remove('dadosfiis.csv')
-    time.sleep(2)
     os.rename(original, correto)
     print(f" O arquivo {original} foi renomeado para {correto}")
 
