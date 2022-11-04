@@ -26,7 +26,7 @@ download_folder = (os.path.dirname(full_path))
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Headless mode
+chrome_options.add_argument("--headless")  # Headless mode
 # chrome_options.add_argument(rf'--user-data-dir={configs.path_chrome}')  # Funciona mas expira e d� trabalho.
 # chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
