@@ -68,7 +68,7 @@ COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 def baixar_csv():
     # Baixando o csv de ações
     navegador.get(f'{url_acoes}')
-    time.sleep(10)
+    navegador.quit()
 
     # Renomeando o csv de ações
     original = 'statusinvest-busca-avancada.csv'
@@ -79,7 +79,7 @@ def baixar_csv():
 
     # Baixando o csv de FIIs
     navegador.get(f'{url_fiis}')
-    time.sleep(10)
+    navegador.quit()
 
     # Renomeando o csv de FIIs
     original = 'statusinvest-busca-avancada.csv'
@@ -87,8 +87,6 @@ def baixar_csv():
     os.remove('dadosfiis.csv')
     os.rename(original, correto)
     print(f" O arquivo {original} foi renomeado para {correto}")
-
-    navegador.quit()
 
 
 def git_push():
