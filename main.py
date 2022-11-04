@@ -169,6 +169,3 @@ def loop():
 while True:
     loop()
 
-
-
-#
