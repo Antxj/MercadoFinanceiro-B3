@@ -25,7 +25,7 @@ download_folder = (os.path.dirname(full_path))
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Headless mode
+chrome_options.add_argument("--headless")  # Headless mode
 # chrome_options.add_argument(rf'--user-data-dir={configs.path_chrome}')  # Funciona mas expira e dá trabalho.
 # chrome_options.add_argument('--profile-directory=Default')
 chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
@@ -38,13 +38,16 @@ chrome_options.add_argument("--disable-extensions")
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--ignore-certificate-errors')
+chrome_options.add_argument("start-maximized")
+chrome_options.add_argument("disable-infobars")
+
 
 prefs = {f"download.default_directory": f"{download_folder}"}
 chrome_options.add_experimental_option("prefs", prefs)
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 # Intervalo atualização
-intervalo = 3600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+intervalo = 1800  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
      
 # Pasta .git e python de acordo com o OS
@@ -68,7 +71,8 @@ COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 def baixar_csv():
     # Baixando o csv de ações
     navegador.get(f'{url_acoes}')
-    time.sleep(15)
+    time.sleep(30)
+    navegador.quit()
 
     # Renomeando o csv de ações
     original = 'statusinvest-busca-avancada.csv'
@@ -79,7 +83,7 @@ def baixar_csv():
 
     # Baixando o csv de FIIs
     navegador.get(f'{url_fiis}')
-    time.sleep(10)
+    time.sleep(30)
     navegador.quit()
 
     # Renomeando o csv de FIIs
@@ -164,3 +168,4 @@ def loop():
 
 while True:
     loop()
+
