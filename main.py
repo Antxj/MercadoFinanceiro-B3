@@ -22,7 +22,7 @@ download_folder = (os.path.dirname(full_path))
 # print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")  # Headless mode
@@ -64,29 +64,34 @@ else:
 COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 
-# Baixando o arquivos .csv
-def baixar_csv():
+# Baixando os arquivos .csv
 
-    # # Baixando o csv de ações
-    # navegador.get(f'{url_acoes}')
-    # time.sleep(20)
-    #
-    # # Renomeando o csv de ações
-    # original = 'statusinvest-busca-avancada.csv'
-    # correto = 'dadosacoes.csv'
-    # os.remove('dadosacoes.csv')
-    # os.rename(original, correto)
-    # print(f" O arquivo {original} foi renomeado para {correto}")
+def baixar_csv_fiis():
 
     # Baixando o csv de FIIs
+    print("Baixando FII's...")
     navegador.get(f'{url_fiis}')
-    time.sleep(20)
-    navegador.quit()
+    time.sleep(5)
 
     # Renomeando o csv de FIIs
     original = 'statusinvest-busca-avancada.csv'
     correto = 'dadosfiis.csv'
     os.remove('dadosfiis.csv')
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
+
+
+def baixar_csv_acoes():
+
+    # Baixando o csv de ações
+    print("Baixando Ações...")
+    navegador.get(f'{url_acoes}')
+    time.sleep(5)
+
+    # Renomeando o csv de ações
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosacoes.csv'
+    os.remove('dadosacoes.csv')
     os.rename(original, correto)
     print(f" O arquivo {original} foi renomeado para {correto}")
 
@@ -140,7 +145,8 @@ Exemplo de uso no Googlesheets:
 # Atualizar tudo
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
-    baixar_csv()
+    baixar_csv_fiis()
+    baixar_csv_acoes()
     criar_readme()
     git_push()
     print('Auto update: OK.')
