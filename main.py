@@ -76,17 +76,17 @@ def baixar_csv():
     os.rename(original, correto)
     print(f" O arquivo {original} foi renomeado para {correto}")
 
-    # Baixando o csv de FIIs
-    navegador.get(f'{url_fiis}')
-    time.sleep(20)
-    navegador.quit()
-
-    # Renomeando o csv de FIIs
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosfiis.csv'
-    os.remove('dadosfiis.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
+    # # Baixando o csv de FIIs
+    # navegador.get(f'{url_fiis}')
+    # time.sleep(20)
+    # navegador.quit()
+    #
+    # # Renomeando o csv de FIIs
+    # original = 'statusinvest-busca-avancada.csv'
+    # correto = 'dadosfiis.csv'
+    # os.remove('dadosfiis.csv')
+    # os.rename(original, correto)
+    # print(f" O arquivo {original} foi renomeado para {correto}")
 
 
 def git_push():
