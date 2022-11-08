@@ -63,30 +63,32 @@ else:
 # Auto push no Github
 COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
+
 # Baixando o arquivos .csv
 def baixar_csv():
-    # Baixando o csv de ações
-    navegador.get(f'{url_acoes}')
-    time.sleep(20)
 
-    # Renomeando o csv de ações
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosacoes.csv'
-    os.remove('dadosacoes.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
-
-    # # Baixando o csv de FIIs
-    # navegador.get(f'{url_fiis}')
+    # # Baixando o csv de ações
+    # navegador.get(f'{url_acoes}')
     # time.sleep(20)
-    # navegador.quit()
     #
-    # # Renomeando o csv de FIIs
+    # # Renomeando o csv de ações
     # original = 'statusinvest-busca-avancada.csv'
-    # correto = 'dadosfiis.csv'
-    # os.remove('dadosfiis.csv')
+    # correto = 'dadosacoes.csv'
+    # os.remove('dadosacoes.csv')
     # os.rename(original, correto)
     # print(f" O arquivo {original} foi renomeado para {correto}")
+
+    # Baixando o csv de FIIs
+    navegador.get(f'{url_fiis}')
+    time.sleep(20)
+    navegador.quit()
+
+    # Renomeando o csv de FIIs
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosfiis.csv'
+    os.remove('dadosfiis.csv')
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
 
 
 def git_push():
