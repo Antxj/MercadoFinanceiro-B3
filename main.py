@@ -19,7 +19,7 @@ url_fiis = 'https://tinyurl.com/yck5nfd4'
 # Pasta de download
 full_path = os.path.realpath(__file__)
 download_folder = (os.path.dirname(full_path))
-# print(f'O arquivo será salvo em {download_folder}')
+print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
