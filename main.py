@@ -23,9 +23,6 @@ else:
     print('Fechando...')
     quit()
 
-print(f'i = {i}')
-
-
 # URL's
 url_acoes = 'https://tinyurl.com/3s2xy5z3'
 url_fiis = 'https://tinyurl.com/yck5nfd4'
@@ -58,7 +55,7 @@ chrome_options.add_experimental_option("prefs", prefs)
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 # Intervalo atualização
-intervalo = 5  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+intervalo = 60  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
      
 # Pasta .git e python de acordo com o OS
