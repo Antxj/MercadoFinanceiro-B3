@@ -143,7 +143,7 @@ Atualização automática em: {intervalo / 60:.2f} minutos. <br>
 
 Exemplo de uso no Googlesheets:
 ```sh
-=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/resultado/dadosacoes.csv";";";"pt_BR")
+=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/dadosacoes.csv";";";"pt_BR")
 ```
 
 ![img_2.png](exemplo.png)
