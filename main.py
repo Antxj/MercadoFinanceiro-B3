@@ -12,6 +12,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
+# Rodar 1 vez ou em loop
+opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
+
+if opcao == '1':
+    i = 1
+elif opcao == '2':
+    i = 2
+else:
+    print('Fechando...')
+    quit()
+
+print(f'i = {i}')
+
+
 # URL's
 url_acoes = 'https://tinyurl.com/3s2xy5z3'
 url_fiis = 'https://tinyurl.com/yck5nfd4'
@@ -155,7 +169,7 @@ def atualizar():
 
 
 # Rodar em loop
-i = 0
+# i = 0
 
 
 def loop():
@@ -164,7 +178,7 @@ def loop():
     i += 1
     time.sleep(intervalo)
     atualizar()
-    if i == 0:
+    if i == 2:
         print('Encerrando...')
         exit()
 
