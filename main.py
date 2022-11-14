@@ -171,7 +171,7 @@ def atualizar():
 
 def loop():
     global i
-    print(f' ###### Execução nº: {i} ######')
+    print(f' ###### Execução nº: {i - 1} ######')
     i += 1
     time.sleep(intervalo)
     atualizar()
