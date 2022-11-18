@@ -179,7 +179,6 @@ def loop():
     atualizar()
     if i == 2:
         print('Encerrando...')
-        exit()
         quit()
 
 
