@@ -180,6 +180,7 @@ def loop():
     if i == 2:
         print('Encerrando...')
         exit()
+        quit()
 
 
 while True:
