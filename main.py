@@ -178,7 +178,6 @@ def loop():
     time.sleep(intervalo)
     atualizar()
     if i == 2:
-        time.sleep(2)
         print('Encerrando...')
         quit()
 
