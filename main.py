@@ -179,6 +179,7 @@ def loop():
     atualizar()
     if i == 2:
         print('Encerrando...')
+        navegador.quit()
         quit()
 
 
