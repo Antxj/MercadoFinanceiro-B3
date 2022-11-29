@@ -179,7 +179,7 @@ def loop():
     atualizar()
     if i == 2:
         print('Encerrando...')
-
+        raise SystemExit
 
 
 while True:
