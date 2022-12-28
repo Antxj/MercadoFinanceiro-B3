@@ -76,7 +76,6 @@ def fiis2():
     df.to_csv('fiis2.csv', encoding='utf-8', index=False, sep=';', decimal=',')
 
 
-
 acoes2()
 fiis2()
 
