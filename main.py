@@ -185,3 +185,8 @@ def loop():
 
 while True:
     loop()
+
+
+# https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx
+# pyinstaller --onefile --clean --key 6B59703373367638792F423F4528482B4D6251655468576D5A7134743777217A --name StatusInvest main.py
+# 6B59703373367638792F423F4528482B4D6251655468576D5A7134743777217A
