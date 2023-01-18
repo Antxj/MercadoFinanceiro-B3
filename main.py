@@ -20,7 +20,7 @@ if opcao == '1':
     intervalo = 1
 elif opcao == '2':
     i = 2
-    intervalo = 1800  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+    intervalo = 60  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 else:
     print('Fechando...')
     quit()
