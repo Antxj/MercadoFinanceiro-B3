@@ -79,5 +79,3 @@ def get_fiis():
 
 get_acoes()
 get_fiis()
-
-
