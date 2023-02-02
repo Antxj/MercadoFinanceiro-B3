@@ -174,9 +174,6 @@ def atualizar():
     print("Garbage collector: collected",
           "%d objects." % collected)
 
-    get_acoes()
-    get_fiis()
-
 
 # Rodar em loop
 # i = 0
