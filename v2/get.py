@@ -26,7 +26,7 @@ def get_acoes():
 
     response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
-    print(response.text)
+    # print(response.text)
 
     json_res = response.json()
 
@@ -64,6 +64,9 @@ def get_fiis():
     }
 
     response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
+
+    # print(response.text)
+
 
     json_res = response.json()
 
