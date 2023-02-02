@@ -1,8 +1,9 @@
 import requests
 import pandas as pd
 
+
 # Acoes
-def acoes2():
+def get_acoes():
     url = "https://statusinvest.com.br/category/advancedsearchresult"
 
     querystring = {
@@ -40,7 +41,7 @@ def acoes2():
 
 
 # FII's
-def fiis2():
+def get_fiis():
     url = "https://statusinvest.com.br/category/advancedsearchresult"
 
     querystring = {
@@ -76,7 +77,7 @@ def fiis2():
     df.to_csv('fiis2.csv', encoding='utf-8', index=False, sep=';', decimal=',')
 
 
-acoes2()
-fiis2()
+get_acoes()
+get_fiis()
 
 
