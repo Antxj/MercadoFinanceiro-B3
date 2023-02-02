@@ -4,6 +4,9 @@ import os
 import platform
 import time
 import gc
+from v2.get import get_fiis
+from v2.get import get_acoes
+
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -170,6 +173,9 @@ def atualizar():
     collected = gc.collect()
     print("Garbage collector: collected",
           "%d objects." % collected)
+
+    get_acoes()
+    get_fiis()
 
 
 # Rodar em loop
