@@ -79,6 +79,3 @@ def get_fiis():
     df = pd.DataFrame(df)
     df.to_csv('fiis2.csv', encoding='utf-8', index=False, sep=';', decimal=',')
 
-
-get_acoes()
-get_fiis()
