@@ -182,10 +182,9 @@ Exemplo de uso no Googlesheets:
 # Atualizar tudo
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
+    baixar_csv_agro()
     baixar_csv_fiis()
     baixar_csv_acoes()
-    baixar_csv_agro()
-
     criar_readme()
     git_push()
     print('Auto update: OK.')
