@@ -4,8 +4,8 @@ import os
 import platform
 import time
 import gc
-from v2.get import get_fiis
-from v2.get import get_acoes
+import requests
+import pandas as pd
 
 
 from selenium import webdriver
@@ -80,8 +80,28 @@ else:
 # Auto push no Github
 COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
-
 # Baixando os arquivos .csv
+
+
+def baixar_csv_agro():
+
+    # Baixando o csv de Agro
+    print("Baixando Agro's...")
+
+    session = requests.session()
+    session.headers.update({
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+        "accept": "application/json ..."
+    })
+
+    url = "https://investidor10.com.br/api/fiagro/comparador-mesmo-segmento/table/33/"
+
+    response = session.get(url)
+    data = response.json()["data"]
+
+    df = pd.DataFrame(data)
+    df.to_csv('agro.csv', encoding='utf-8', index=False, decimal=',')
+
 
 def baixar_csv_fiis():
 
@@ -164,6 +184,8 @@ def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
     baixar_csv_fiis()
     baixar_csv_acoes()
+    baixar_csv_agro()
+
     criar_readme()
     git_push()
     print('Auto update: OK.')

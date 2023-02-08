@@ -96,9 +96,6 @@ def get_agro():
     df.to_csv('agro2.csv', encoding='utf-8', index=False, decimal=',')
 
 
-get_acoes()
-get_fiis()
-get_agro()
 
 
 
