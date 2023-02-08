@@ -67,7 +67,6 @@ def get_fiis():
 
     # print(response.text)
 
-
     json_res = response.json()
 
     res = []
@@ -78,4 +77,9 @@ def get_fiis():
     df = pd.json_normalize(res)
     df = pd.DataFrame(df)
     df.to_csv('fiis2.csv', encoding='utf-8', index=False, sep=';', decimal=',')
+
+
+get_acoes()
+get_fiis()
+
 

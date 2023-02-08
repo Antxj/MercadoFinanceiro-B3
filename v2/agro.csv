@@ -1,15 +1,2 @@
-[
-
-{"title": "SNAG11", "dividend_yield": 5.3, "p_vp": 1.01, "daily_liquidity": 1132803, "net_worth": 150202325, "star_dy": false, "star_pvp": false, "star_dl": true, "star_nw": true},
-{"title": "VICA11", "dividend_yield": 0, "p_vp": 0, "daily_liquidity": 0, "net_worth": 0, "star_dy": false, "star_pvp": true, "star_dl": false, "star_nw": false},
-{"title": "HGAG11", "dividend_yield": 95.45, "p_vp": 0.26, "daily_liquidity": 220310, "net_worth": 25095000, "star_dy": true, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "OIAG11", "dividend_yield": 10.86, "p_vp": 1.05, "daily_liquidity": 99523, "net_worth": 41127000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "NCRA11", "dividend_yield": 11.9, "p_vp": 0.99, "daily_liquidity": 137360, "net_worth": 43074000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "AGRX11", "dividend_yield": 4.25, "p_vp": 1, "daily_liquidity": 32333, "net_worth": 51575000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "PLCA11", "dividend_yield": 6.52, "p_vp": 1.02, "daily_liquidity": 31852, "net_worth": 52959000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "DCRA11", "dividend_yield": 12.95, "p_vp": 0.9500000000000001, "daily_liquidity": 269530, "net_worth": 64757000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "LSAG11", "dividend_yield": 14.44, "p_vp": 1.07, "daily_liquidity": 34715, "net_worth": 81345000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "JGPX11", "dividend_yield": 13.18, "p_vp": 1, "daily_liquidity": 112500, "net_worth": 81440000, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false},
-{"title": "EGAF11", "dividend_yield": 17.33, "p_vp": 1, "daily_liquidity": 344255, "net_worth": 92445068, "star_dy": false, "star_pvp": false, "star_dl": false, "star_nw": false}
-
-]
+""
+0
