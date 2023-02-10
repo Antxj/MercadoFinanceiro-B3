@@ -187,6 +187,7 @@ def atualizar():
     baixar_csv_acoes()
     criar_readme()
     git_push()
+    navegador.quit()
     print('Auto update: OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
