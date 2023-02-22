@@ -42,7 +42,7 @@ print(f'O arquivo será salvo em {download_folder}')
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")  # Headless mode
+# chrome_options.add_argument("--headless")  # Headless mode
 chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument("--disable-notifications")
@@ -183,8 +183,8 @@ Exemplo de uso no Googlesheets:
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
     baixar_csv_agro()
-    baixar_csv_fiis()
     baixar_csv_acoes()
+    baixar_csv_fiis()
     criar_readme()
     git_push()
     navegador.quit()
