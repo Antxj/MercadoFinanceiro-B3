@@ -18,7 +18,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
 
-
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
 
