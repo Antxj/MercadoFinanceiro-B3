@@ -6,6 +6,7 @@ import time
 import gc
 import requests
 import pandas as pd
+from fake_useragent import UserAgent
 
 
 from selenium import webdriver
@@ -15,6 +16,8 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
+
+
 
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
@@ -39,11 +42,12 @@ download_folder = (os.path.dirname(full_path))
 print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
+ua = UserAgent(browsers=['chrome'])
+user_agent = ua.random
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--headless")  # Headless mode
-chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
+chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument("--disable-notifications")
 chrome_options.add_argument("--disable-popup-blocking")
