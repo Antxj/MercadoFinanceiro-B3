@@ -43,8 +43,8 @@ print(f'O arquivo será salvo em {download_folder}')
 # Chrome
 
 ua = UserAgent(browsers=['chrome'])
-# user_agent = ua.random
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+user_agent = ua.random
+# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 
 
 servico = Service(ChromeDriverManager().install())
