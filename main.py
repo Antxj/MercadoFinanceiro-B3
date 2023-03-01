@@ -41,8 +41,12 @@ download_folder = (os.path.dirname(full_path))
 print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
+
 ua = UserAgent(browsers=['chrome'])
-user_agent = ua.random
+# user_agent = ua.random
+user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+
+
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
 # chrome_options.add_argument("--headless")  # Headless mode
