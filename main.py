@@ -34,6 +34,9 @@ else:
 # URL's
 url_acoes = 'https://tinyurl.com/3s2xy5z3'
 url_fiis = 'https://tinyurl.com/yck5nfd4'
+url_stocks = 'https://tinyurl.com/47s4j77h'
+url_reits = 'https://tinyurl.com/ye2858s5'
+
 
 # Pasta de download
 full_path = os.path.realpath(__file__)
@@ -110,8 +113,35 @@ def baixar_csv_agro():
     df.to_csv('agro.csv', encoding='utf-8', index=False, decimal=',')
 
 
-def baixar_csv_fiis():
+def baixar_csv_reits():
+    # Baixando o csv de Reits
+    print("Baixando Reits...")
+    navegador.get(f'{url_reits}')
+    time.sleep(5)
 
+    # Renomeando o csv de Reits
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosreits.csv'
+    os.remove('dadosreits.csv')
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
+
+
+def baixar_csv_stocks():
+    # Baixando o csv de Stocks
+    print("Baixando Stockss...")
+    navegador.get(f'{url_stocks}')
+    time.sleep(5)
+
+    # Renomeando o csv de Stocks
+    original = 'statusinvest-busca-avancada.csv'
+    correto = 'dadosstocks.csv'
+    os.remove('dadosstocks.csv')
+    os.rename(original, correto)
+    print(f" O arquivo {original} foi renomeado para {correto}")
+
+
+def baixar_csv_fiis():
     # Baixando o csv de FIIs
     print("Baixando FII's...")
     navegador.get(f'{url_fiis}')
@@ -126,7 +156,6 @@ def baixar_csv_fiis():
 
 
 def baixar_csv_acoes():
-
     # Baixando o csv de ações
     print("Baixando Ações...")
     navegador.get(f'{url_acoes}')
