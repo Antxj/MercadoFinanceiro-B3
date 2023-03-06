@@ -129,7 +129,7 @@ def baixar_csv_reits():
 
 def baixar_csv_stocks():
     # Baixando o csv de Stocks
-    print("Baixando Stockss...")
+    print("Baixando Stocks...")
     navegador.get(f'{url_stocks}')
     time.sleep(5)
 
