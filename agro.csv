@@ -2,6 +2,7 @@ title,dividend_yield,p_vp,daily_liquidity,net_worth,star_dy,star_pvp,star_dl,sta
 SNAG11,"6,49","1,0",2029000,303135000,False,False,True,True
 VICA11,"6,29","0,0",0,0,False,True,False,False
 HGAG11,"81,85","1,19",45380,6073000,False,False,False,False
+IAGR11,"1,43","0,96",29300,25438275,False,False,False,False
 OIAG11,"171,69","1,07",143035,41009000,True,False,False,False
 NCRA11,"17,29","0,11",201592,43344000,False,False,False,False
 PLCA11,"7,67","1,01",48825,53050000,False,False,False,False
@@ -9,4 +10,3 @@ AGRX11,"8,47","1,03",38065,56630000,False,False,False,False
 DCRA11,"14,26","0,96",200110,64835000,False,False,False,False
 LSAG11,"15,83","1,06",28590,81550000,False,False,False,False
 JGPX11,"14,63","1,0",168920,81842000,False,False,False,False
-EGAF11,"18,76","1,01",828844,93810000,False,False,False,False
