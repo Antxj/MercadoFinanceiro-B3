@@ -14,7 +14,7 @@ from selenium.webdriver.common.keys import Keys
 # Chrome
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Headless mode
+chrome_options.add_argument("--headless")  # Headless mode
 ua = UserAgent(browsers=['chrome'])
 user_agent = ua.random
 # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
