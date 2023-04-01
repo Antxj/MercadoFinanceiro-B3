@@ -1,5 +1,6 @@
 import csv
 import os
+import time
 
 from fake_useragent import UserAgent
 
@@ -14,7 +15,7 @@ from selenium.webdriver.common.keys import Keys
 # Chrome
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")  # Headless mode
+# chrome_options.add_argument("--headless")  # Headless mode
 ua = UserAgent(browsers=['chrome'])
 user_agent = ua.random
 # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
@@ -51,9 +52,11 @@ def dy_ano_fiis(ticker):
         writer.writerow(infos)
 
 
-tickers_fiis = ['BCFF11', 'HFOF11']
+tickers_fiis = ['BCFF11', 'HFOF11', 'HSML11', 'LGCP11', 'HOFC11', 'VILG11', 'MXRF11', 'RECR11', 'BTAL11',
+'KNCR11', 'XPPR11', 'TGAR11', 'HGRU11', 'HGLG11', 'GGRC11', 'SDIL11', 'XPML11', 'VISC11']
 for i in tickers_fiis:
     dy_ano_fiis(i)
+    time.sleep(1)
 
 
 def dy_ano_acoes(ticker):
@@ -72,4 +75,5 @@ def dy_ano_acoes(ticker):
 tickers_acoes = ['ITSA4', 'BBDC4', 'EGIE3', 'AESB3', 'TAEE11', 'TASA4', 'KLBN4', 'SAPR4', 'WIZC3']
 for i in tickers_acoes:
     dy_ano_acoes(i)
+    time.sleep(1)
 
