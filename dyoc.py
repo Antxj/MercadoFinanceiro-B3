@@ -15,7 +15,7 @@ from selenium.webdriver.common.keys import Keys
 # Chrome
 servico = Service(ChromeDriverManager().install())
 chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Headless mode
+chrome_options.add_argument("--headless")  # Headless mode
 ua = UserAgent(browsers=['chrome'])
 user_agent = ua.random
 # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
@@ -39,6 +39,29 @@ navegador = webdriver.Chrome(service=servico, options=chrome_options)
 os.remove('dyoc.csv')
 
 
+
+#ETF
+def dy_ano_etfs(ticker):
+    url = f'https://stockanalysis.com/etf/{ticker}/dividend/'
+    navegador.get(f'{url}')
+    dado = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+        (By.XPATH, '//*[@id="main"]/div[2]/div/div[2]/div[2]/div'))).get_attribute("innerHTML")
+    dado = dado.replace('$', '')
+    dado = dado.replace('.', ',')
+    print(f'{ticker} - {dado}')
+    with open('dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        infos = [f'{ticker}', f'{dado}']
+        writer.writerow(infos)
+
+
+tickers_etfs = ['VOO', 'VNQ', 'VNQI', 'PGX', 'LQD', 'SCHD', 'NOBL']
+for i in tickers_etfs:
+    dy_ano_etfs(i)
+    time.sleep(1)
+
+
+#FIIS
 def dy_ano_fiis(ticker):
     url = f'https://statusinvest.com.br/fundos-imobiliarios/{ticker}/'
     navegador.get(f'{url}')
@@ -59,6 +82,8 @@ for i in tickers_fiis:
     time.sleep(1)
 
 
+
+# Acoes
 def dy_ano_acoes(ticker):
     url = f'https://statusinvest.com.br/acoes/{ticker}'
     navegador.get(f'{url}')

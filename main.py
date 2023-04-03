@@ -7,8 +7,6 @@ import gc
 import requests
 import pandas as pd
 from fake_useragent import UserAgent
-import dyoc
-
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
