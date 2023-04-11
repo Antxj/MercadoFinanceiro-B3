@@ -25,7 +25,7 @@ if opcao == '1':
     intervalo = 1
 elif opcao == '2':
     i = 2
-    intervalo = 600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+    intervalo = 3600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 else:
     print('Fechando...')
     quit()
@@ -252,3 +252,4 @@ def loop():
 
 while True:
     loop()
+    
