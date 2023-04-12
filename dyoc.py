@@ -39,7 +39,6 @@ navegador = webdriver.Chrome(service=servico, options=chrome_options)
 os.remove('dyoc.csv')
 
 
-
 #ETF
 def dy_ano_etfs(ticker):
     url = f'https://stockanalysis.com/etf/{ticker}/dividend/'
@@ -80,7 +79,6 @@ tickers_fiis = ['BCFF11', 'HFOF11', 'HSML11', 'LGCP11', 'HOFC11', 'VILG11', 'MXR
 for i in tickers_fiis:
     dy_ano_fiis(i)
     time.sleep(1)
-
 
 
 # Acoes
