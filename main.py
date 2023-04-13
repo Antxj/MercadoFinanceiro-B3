@@ -17,6 +17,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
+# Rodar 1 vez ou em loop
+opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
+
+if opcao == '1':
+    i = 1
+    intervalo = 1
+elif opcao == '2':
+    i = 2
+    intervalo = 3600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
+else:
+    print('Fechando...')
+    quit()
+
 # Pasta de download
 full_path = os.path.realpath(__file__)
 download_folder = (os.path.dirname(full_path)) + "\csv"
@@ -45,19 +58,6 @@ chrome_options.add_argument("disable-infobars")
 prefs = {f"download.default_directory": f"{download_folder}"}
 chrome_options.add_experimental_option("prefs", prefs)
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
-
-# Rodar 1 vez ou em loop
-opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
-
-if opcao == '1':
-    i = 1
-    intervalo = 1
-elif opcao == '2':
-    i = 2
-    intervalo = 3600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
-else:
-    print('Fechando...')
-    quit()
 
 # URL's
 url_acoes = 'https://tinyurl.com/3s2xy5z3'
@@ -177,7 +177,7 @@ def atualizar():
     criar_readme()
     git_push()
     navegador.quit()
-    print('Auto update: OK.')
+    print('Auto update - OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
