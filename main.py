@@ -91,7 +91,7 @@ COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 def baixar_csv_agro():
 
     # Baixando o csv de Agro
-    print("Baixando Agro's...")
+    print("dadosfiiagro.csv - OK.")
 
     session = requests.session()
     session.headers.update({
