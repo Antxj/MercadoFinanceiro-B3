@@ -7,6 +7,7 @@ import gc
 import requests
 import pandas as pd
 from fake_useragent import UserAgent
+import glob
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -39,7 +40,7 @@ url_reits = 'https://tinyurl.com/ye2858s5'
 
 # Pasta de download
 full_path = os.path.realpath(__file__)
-download_folder = (os.path.dirname(full_path))
+download_folder = (os.path.dirname(full_path)) + "\csv"
 print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
@@ -112,60 +113,16 @@ def baixar_csv_agro():
     df.to_csv('agro.csv', encoding='utf-8', index=False, decimal=',')
 
 
-def baixar_csv_reits():
-    # Baixando o csv de Reits
-    print("Baixando Reits...")
-    navegador.get(f'{url_reits}')
-    time.sleep(5)
+def get_csv_rename(url, nome):
+    navegador.get(f'{url}')
+    time.sleep(3)
 
-    # Renomeando o csv de Reits
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosreits.csv'
-    os.remove('dadosreits.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
-
-
-def baixar_csv_stocks():
-    # Baixando o csv de Stocks
-    print("Baixando Stocks...")
-    navegador.get(f'{url_stocks}')
-    time.sleep(5)
-
-    # Renomeando o csv de Stocks
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosstocks.csv'
-    os.remove('dadosstocks.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
-
-
-def baixar_csv_fiis():
-    # Baixando o csv de FIIs
-    print("Baixando FII's...")
-    navegador.get(f'{url_fiis}')
-    time.sleep(5)
-
-    # Renomeando o csv de FIIs
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosfiis.csv'
-    os.remove('dadosfiis.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
-
-
-def baixar_csv_acoes():
-    # Baixando o csv de ações
-    print("Baixando Ações...")
-    navegador.get(f'{url_acoes}')
-    time.sleep(5)
-
-    # Renomeando o csv de ações
-    original = 'statusinvest-busca-avancada.csv'
-    correto = 'dadosacoes.csv'
-    os.remove('dadosacoes.csv')
-    os.rename(original, correto)
-    print(f" O arquivo {original} foi renomeado para {correto}")
+    # Renomeando ultimo csv
+    lista_arquivos = glob.glob(download_folder + '\*')
+    ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
+    os.remove(f'csv\{nome}')
+    os.rename(ultimo_arquivo, f'csv\{nome}')
+    print(f" O arquivo {ultimo_arquivo} foi renomeado para {nome}")
 
 
 def git_push():
@@ -217,10 +174,10 @@ Exemplo de uso no Googlesheets:
 # Atualizar tudo
 def atualizar():
     last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
-    baixar_csv_acoes()
-    baixar_csv_fiis()
-    baixar_csv_stocks()
-    baixar_csv_reits()
+    get_csv_rename(url_fiis, 'dadosfiis.csv')
+    get_csv_rename(url_acoes, 'dadosacoes.csv')
+    get_csv_rename(url_stocks, 'dadosstocks.csv')
+    get_csv_rename(url_reits, 'dadosreits.csv')
     baixar_csv_agro()
     criar_readme()
     git_push()

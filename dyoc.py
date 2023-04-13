@@ -89,7 +89,7 @@ def dy_ano_acoes(ticker):
         (By.XPATH, '//*[@id="main-2"]/div[2]/div/div[1]/div/div[4]/div/div[2]/div/span[2]'))).get_attribute("innerHTML")
     dado = dado.replace('R$ ', '')
     print(f'{ticker} - {dado}')
-    with open('dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+    with open('csv\dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         infos = [f'{ticker}', f'{dado}']
         writer.writerow(infos)
