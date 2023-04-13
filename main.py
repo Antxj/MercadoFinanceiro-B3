@@ -17,6 +17,34 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
+# Pasta de download
+full_path = os.path.realpath(__file__)
+download_folder = (os.path.dirname(full_path)) + "\csv"
+print(f'O arquivo será salvo em {download_folder}')
+
+# Chrome
+ua = UserAgent(browsers=['chrome'])
+user_agent = ua.random
+# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+# chrome_options.add_argument("--headless")  # Headless mode
+servico = Service(ChromeDriverManager().install())
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
+chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--disable-notifications")
+chrome_options.add_argument("--disable-popup-blocking")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--ignore-certificate-errors')
+chrome_options.add_argument("start-maximized")
+chrome_options.add_argument("disable-infobars")
+
+prefs = {f"download.default_directory": f"{download_folder}"}
+chrome_options.add_experimental_option("prefs", prefs)
+navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
@@ -36,39 +64,6 @@ url_acoes = 'https://tinyurl.com/3s2xy5z3'
 url_fiis = 'https://tinyurl.com/yck5nfd4'
 url_stocks = 'https://tinyurl.com/47s4j77h'
 url_reits = 'https://tinyurl.com/ye2858s5'
-
-
-# Pasta de download
-full_path = os.path.realpath(__file__)
-download_folder = (os.path.dirname(full_path)) + "\csv"
-print(f'O arquivo será salvo em {download_folder}')
-
-# Chrome
-
-ua = UserAgent(browsers=['chrome'])
-user_agent = ua.random
-# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
-
-
-servico = Service(ChromeDriverManager().install())
-chrome_options = webdriver.ChromeOptions()
-# chrome_options.add_argument("--headless")  # Headless mode
-chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
-chrome_options.add_argument("--incognito")
-chrome_options.add_argument("--disable-notifications")
-chrome_options.add_argument("--disable-popup-blocking")
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument('--disable-dev-shm-usage')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--ignore-certificate-errors')
-chrome_options.add_argument("start-maximized")
-chrome_options.add_argument("disable-infobars")
-
-prefs = {f"download.default_directory": f"{download_folder}"}
-chrome_options.add_experimental_option("prefs", prefs)
-navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 # Intervalo atualização
 # intervalo = 600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
@@ -122,7 +117,7 @@ def get_csv_rename(url, nome):
     ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
     os.remove(f'csv\{nome}')
     os.rename(ultimo_arquivo, f'csv\{nome}')
-    print(f" O arquivo {ultimo_arquivo} foi renomeado para {nome}")
+    print(f" OK: {nome}!")
 
 
 def git_push():
