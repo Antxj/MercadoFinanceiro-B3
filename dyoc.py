@@ -36,10 +36,10 @@ chrome_options.add_argument("start-maximized")
 chrome_options.add_argument("disable-infobars")
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
-os.remove('dyoc.csv')
+os.remove('csv\dyoc.csv')
 
 
-#ETF
+# ETF
 def dy_ano_etfs(ticker):
     url = f'https://stockanalysis.com/etf/{ticker}/dividend/'
     navegador.get(f'{url}')
@@ -48,7 +48,7 @@ def dy_ano_etfs(ticker):
     dado = dado.replace('$', '')
     dado = dado.replace('.', ',')
     print(f'{ticker} - {dado}')
-    with open('dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+    with open('csv\dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         infos = [f'{ticker}', f'{dado}']
         writer.writerow(infos)
@@ -60,7 +60,7 @@ for i in tickers_etfs:
     time.sleep(1)
 
 
-#FIIS
+# FIIS
 def dy_ano_fiis(ticker):
     url = f'https://statusinvest.com.br/fundos-imobiliarios/{ticker}/'
     navegador.get(f'{url}')
@@ -68,14 +68,14 @@ def dy_ano_fiis(ticker):
         (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[2]/div/span[2]'))).get_attribute("innerHTML")
     dado = dado.replace('R$ ', '')
     print(f'{ticker} - {dado}')
-    with open('dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+    with open('csv\dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         infos = [f'{ticker}', f'{dado}']
         writer.writerow(infos)
 
 
 tickers_fiis = ['BCFF11', 'HFOF11', 'HSML11', 'LGCP11', 'HOFC11', 'VILG11', 'MXRF11', 'RECR11', 'BTAL11',
-'KNCR11', 'XPPR11', 'TGAR11', 'HGRU11', 'HGLG11', 'GGRC11', 'SDIL11', 'XPML11', 'VISC11']
+                'KNCR11', 'XPPR11', 'TGAR11', 'HGRU11', 'HGLG11', 'GGRC11', 'SDIL11', 'XPML11', 'VISC11']
 for i in tickers_fiis:
     dy_ano_fiis(i)
     time.sleep(1)
