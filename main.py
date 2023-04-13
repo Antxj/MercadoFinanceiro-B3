@@ -105,7 +105,7 @@ def baixar_csv_agro():
     data = response.json()["data"]
 
     df = pd.DataFrame(data)
-    df.to_csv('agro.csv', encoding='utf-8', index=False, decimal=',')
+    df.to_csv("csv\dadosfiiagro.csv", encoding='utf-8', index=False, decimal=',')
 
 
 def get_csv_rename(url, nome):
@@ -117,7 +117,7 @@ def get_csv_rename(url, nome):
     ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
     os.remove(f'csv\{nome}')
     os.rename(ultimo_arquivo, f'csv\{nome}')
-    print(f"{nome}: OK.")
+    print(f"{nome} - OK.")
 
 
 def git_push():
@@ -127,7 +127,7 @@ def git_push():
         repo.index.commit(COMMIT_MESSAGE)
         origin = repo.remote(name='origin')
         origin.push()
-        print('Push: OK.')
+        print('Push - OK.')
     except:
         print('Deu erro na hora do push!')
 
@@ -146,14 +146,14 @@ Atualização automática em: {intervalo / 60:.2f} minutos. <br>
 
 >Resultados: <br>
 [Ações - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=313887204&single=true) <br>
-[Ações - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/dadosacoes.csv) <br>
+[Ações - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/csv/dadosacoes.csv) <br>
 [FII's - Googlesheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vS97G13-9owVwSm1y_TAE3gTaxYflhMvgXCYgj3zEGVwqrbPiUrsOyUUcdhM5D7YVJPNaiinn51Plgc/pubhtml?gid=1741348998&single=true) <br>
-[FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/dadosfiis.csv) <br>
+[FII's - .csv](https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/csv/dadosfiis.csv) <br>
 
 
 Exemplo de uso no Googlesheets:
 ```sh
-=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/dadosacoes.csv";";";"pt_BR")
+=IMPORTDATA("https://raw.githubusercontent.com/Antxj/StatusInvestDados/master/csv/dadosacoes.csv";";";"pt_BR")
 ```
 
 ![img_2.png](exemplo.png)
@@ -163,7 +163,7 @@ Exemplo de uso no Googlesheets:
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
-    print('Readme.md: OK.')
+    print('Readme.md - OK.')
 
 
 # Atualizar tudo
