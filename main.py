@@ -117,7 +117,7 @@ def get_csv_rename(url, nome):
     ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
     os.remove(f'csv\{nome}')
     os.rename(ultimo_arquivo, f'csv\{nome}')
-    print(f" OK: {nome}!")
+    print(f"{nome}: OK.")
 
 
 def git_push():
