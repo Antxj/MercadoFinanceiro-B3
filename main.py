@@ -197,9 +197,9 @@ def loop():
     time.sleep(intervalo)
     atualizar()
     if i == 2:
-        print('Encerrando...')
         navegador.quit()
         quit()
+        print('Finalizado.')
 
 
 while True:
