@@ -75,7 +75,9 @@ def dy_ano_fiis(ticker):
 
 
 tickers_fiis = ['BCFF11', 'HFOF11', 'HSML11', 'LGCP11', 'HOFC11', 'VILG11', 'MXRF11', 'RECR11', 'BTAL11',
-                'KNCR11', 'XPPR11', 'TGAR11', 'HGRU11', 'HGLG11', 'GGRC11', 'SDIL11', 'XPML11', 'VISC11']
+                'KNCR11', 'XPPR11', 'TGAR11', 'HGRU11', 'HGLG11', 'GGRC11', 'SDIL11', 'XPML11', 'VISC11',
+                'KFOF11']
+
 for i in tickers_fiis:
     dy_ano_fiis(i)
     time.sleep(1)
