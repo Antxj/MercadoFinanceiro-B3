@@ -38,6 +38,27 @@ navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
 os.remove('csv\dyoc.csv')
 
+# FII's AGRO
+def dy_ano_fiisagro(ticker):
+    url = f'https://statusinvest.com.br/fiagros/{ticker}/'
+    navegador.get(f'{url}')
+    dado = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+        (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[2]/div/span[2]'))).get_attribute("innerHTML")
+    dado = dado.replace('R$ ', '')
+    dado = " ".join(line.strip() for line in dado.splitlines())
+    dado = dado.replace(' ', '')
+    print(f'{ticker} - {dado}')
+    with open('csv\dyoc.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        infos = [f'{ticker}', f'{dado}']
+        writer.writerow(infos)
+
+
+tickers_fiisagro = ['SNAG11', 'KNCA11']
+
+for i in tickers_fiisagro:
+    dy_ano_fiisagro(i)
+    time.sleep(1)
 
 # ETF
 def dy_ano_etfs(ticker):
@@ -60,7 +81,7 @@ for i in tickers_etfs:
     time.sleep(1)
 
 
-# FIIS
+# FII's
 def dy_ano_fiis(ticker):
     url = f'https://statusinvest.com.br/fundos-imobiliarios/{ticker}/'
     navegador.get(f'{url}')

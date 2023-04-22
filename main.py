@@ -17,6 +17,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
+import etf
+
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
 
@@ -86,7 +88,6 @@ else:
 COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 # Baixando os arquivos .csv
-
 
 def baixar_csv_agro():
 
@@ -173,6 +174,7 @@ def atualizar():
     get_csv_rename(url_acoes, 'dadosacoes.csv')
     get_csv_rename(url_stocks, 'dadosstocks.csv')
     get_csv_rename(url_reits, 'dadosreits.csv')
+    etf.etf_eua()
     baixar_csv_agro()
     criar_readme()
     git_push()
