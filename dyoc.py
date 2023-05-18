@@ -60,6 +60,7 @@ for i in tickers_fiisagro:
     dy_ano_fiisagro(i)
     time.sleep(1)
 
+
 # ETF
 def dy_ano_etfs(ticker):
     url = f'https://stockanalysis.com/etf/{ticker}/dividend/'
