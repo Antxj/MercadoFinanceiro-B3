@@ -89,6 +89,7 @@ COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 
 # Baixando os arquivos .csv
 
+
 def baixar_csv_agro():
 
     # Baixando o csv de Agro
