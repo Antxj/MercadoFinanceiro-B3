@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\csv\tesouro.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

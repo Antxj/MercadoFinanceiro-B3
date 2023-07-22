@@ -18,6 +18,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
 import etf
+import tesouro
 
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
@@ -180,6 +181,7 @@ def atualizar():
     criar_readme()
     git_push()
     navegador.quit()
+    tesouro.valor_tesouro()
     print('Auto update - OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
