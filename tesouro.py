@@ -61,10 +61,5 @@ def tesouro():
         valor_tesouro(i)
         time.sleep(1)
 
-    print("""
-    --------------
-    Tesouro concluído.
-    --------------
-    """)
     navegador.quit()
     print('Tesouro - OK.')
