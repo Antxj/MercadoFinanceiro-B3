@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv\dadosfiiagro.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\csv\dadosfiis.csv">
           <value>
             <Attribute>
@@ -39,20 +32,6 @@
           </value>
         </entry>
         <entry key="\csv\dyoc.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\csv\etf.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\csv\tesouro.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
