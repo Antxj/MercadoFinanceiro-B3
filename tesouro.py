@@ -36,36 +36,35 @@ chrome_options.add_argument("start-maximized")
 chrome_options.add_argument("disable-infobars")
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
-os.remove("csv\\tesouro.csv")
+# os.remove("csv\\tesouro.csv")
 
 
 # Tesouro
-def valor_tesouro(tesouro):
-    url = f'https://statusinvest.com.br/tesouro/{tesouro}/'
-    navegador.get(f'{url}')
-    dado = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
-        (By.XPATH, '//*[@id="tesouro"]/div/div[1]/div/div[1]/div/div[1]/strong'))).get_attribute("innerHTML")
-    dado = dado.replace('R$ ', '')
-    dado = " ".join(line.strip() for line in dado.splitlines())
-    dado = dado.replace(' ', '')
-    print(f'{tesouro} - {dado}')
-    with open("csv\\tesouro.csv", 'a+', newline='', encoding='utf-8') as csv_file:
-        writer = csv.writer(csv_file, delimiter=',')
-        infos = [f'{tesouro}', f'{dado}']
-        writer.writerow(infos)
+def tesouro():
+    def valor_tesouro(tesouro):
+        url = f'https://statusinvest.com.br/tesouro/{tesouro}/'
+        navegador.get(f'{url}')
+        dado = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="tesouro"]/div/div[1]/div/div[1]/div/div[1]/strong'))).get_attribute("innerHTML")
+        dado = dado.replace('R$ ', '')
+        dado = " ".join(line.strip() for line in dado.splitlines())
+        dado = dado.replace(' ', '')
+        print(f'{tesouro} - {dado}')
+        with open("csv\\tesouro.csv", 'a+', newline='', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file, delimiter=',')
+            infos = [f'{tesouro}', f'{dado}']
+            writer.writerow(infos)
 
+    tickers_fiisagro = ['tesouro-prefixado-2025']
 
-tickers_fiisagro = ['tesouro-prefixado-2025']
+    for i in tickers_fiisagro:
+        valor_tesouro(i)
+        time.sleep(1)
 
-for i in tickers_fiisagro:
-    valor_tesouro(i)
-    time.sleep(1)
-
-
-
-print("""
---------------
-Tesouro concluído.
---------------
-""")
-navegador.quit()
+    print("""
+    --------------
+    Tesouro concluído.
+    --------------
+    """)
+    navegador.quit()
+    print('Tesouro - OK.')

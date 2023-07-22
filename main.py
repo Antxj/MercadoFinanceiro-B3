@@ -177,11 +177,12 @@ def atualizar():
     get_csv_rename(url_stocks, 'dadosstocks.csv')
     get_csv_rename(url_reits, 'dadosreits.csv')
     etf.etf_eua()
+    tesouro.tesouro()
     baixar_csv_agro()
     criar_readme()
     git_push()
     navegador.quit()
-    tesouro.valor_tesouro()
+
     print('Auto update - OK.')
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
