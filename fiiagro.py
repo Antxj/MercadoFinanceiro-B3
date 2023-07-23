@@ -1,0 +1,82 @@
+import csv
+import os
+import time
+
+from fake_useragent import UserAgent
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.keys import Keys
+
+# Chrome
+servico = Service(ChromeDriverManager().install())
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")  # Headless mode
+ua = UserAgent(browsers=['chrome'])
+user_agent = ua.random
+# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+# chrome_options.add_argument(rf'--user-data-dir={path_chrome}')  # Funciona mas expira e dá trabalho.
+chrome_options.add_argument(f"user-agent={user_agent}")  # Agent
+chrome_options.add_experimental_option("useAutomationExtension", False)
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--disable-notifications")
+chrome_options.add_argument("--disable-popup-blocking")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--ignore-certificate-errors')
+chrome_options.add_argument("start-maximized")
+chrome_options.add_argument("disable-infobars")
+navegador = webdriver.Chrome(service=servico, options=chrome_options)
+
+
+def fii_agro():
+    os.remove('csv\\fiiagro.csv')
+
+    with open('csv\\fiiagro.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        index = ['Ticker', 'DY', 'DYOC', 'P/VP', 'Dividendo']
+        writer.writerow(index)
+        csv_file.close()
+
+    # Dados
+    def fiiagro(ticker):
+        url = f'https://statusinvest.com.br/fiagros/{ticker}'
+        navegador.get(f'{url}')
+
+        dy = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[1]/strong'))).get_attribute("innerHTML")
+
+        dyoc = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[2]/div/span[2]'))).get_attribute("innerHTML")
+        dyoc = dyoc.replace('R$ ', '')
+        dyoc = " ".join(line.strip() for line in dyoc.splitlines())
+        dyoc = dyoc.replace(' ', '')
+
+        p_vp = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="main-2"]/div[2]/div[4]/div/div[2]/div/div[1]/strong'))).get_attribute("innerHTML")
+
+        dividendo = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="dy-info"]/div/div[1]/strong'))).get_attribute("innerHTML")
+
+        print(f'{ticker} - DY: {dy}% - DYOC: {dyoc} - P/VP: {p_vp} - Dividendo: {dividendo}')
+
+        with open('csv\\fiiagro.csv', 'a+', newline='', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file, delimiter=',')
+            infos = [f'{ticker}', f'{dy}', f'{dyoc}', f'{p_vp}', f'{dividendo}']
+            writer.writerow(infos)
+            csv_file.close()
+
+    tickers_fiiagro = ['SNAG11', 'KNCA11', 'RZAG11']
+    for i in tickers_fiiagro:
+        fiiagro(i)
+        time.sleep(1)
+
+    print("FII's AGRO - OK")

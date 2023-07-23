@@ -19,6 +19,7 @@ from selenium.webdriver.common.keys import Keys
 
 import etf
 import tesouro
+from fiiagro import fii_agro
 
 # Rodar 1 vez ou em loop
 opcao = input("1- Executar uma vez.\n2- Executar em loop.\n")
@@ -91,26 +92,6 @@ COMMIT_MESSAGE = f'PI4: Auto update em: {intervalo / 60:.2f} minutos'
 # Baixando os arquivos .csv
 
 
-def baixar_csv_agro():
-
-    # Baixando o csv de Agro
-    print("dadosfiiagro.csv - OK.")
-
-    session = requests.session()
-    session.headers.update({
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-        "accept": "application/json ..."
-    })
-
-    url = "https://investidor10.com.br/api/fiagro/comparador-mesmo-segmento/table/33/"
-
-    response = session.get(url)
-    data = response.json()["data"]
-
-    df = pd.DataFrame(data)
-    df.to_csv("csv\dadosfiiagro.csv", encoding='utf-8', index=False, decimal=',')
-
-
 def get_csv_rename(url, nome):
     navegador.get(f'{url}')
     time.sleep(3)
@@ -178,7 +159,7 @@ def atualizar():
     get_csv_rename(url_reits, 'dadosreits.csv')
     etf.etf_eua()
     tesouro.tesouro()
-    baixar_csv_agro()
+    fii_agro()
     criar_readme()
     git_push()
     navegador.quit()
