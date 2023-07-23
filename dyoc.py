@@ -54,7 +54,7 @@ def dy_ano_fiisagro(ticker):
         writer.writerow(infos)
 
 
-tickers_fiisagro = ['SNAG11', 'KNCA11']
+tickers_fiisagro = ['SNAG11', 'KNCA11', 'RZAG11']
 
 for i in tickers_fiisagro:
     dy_ano_fiisagro(i)
@@ -119,7 +119,7 @@ def dy_ano_acoes(ticker):
         writer.writerow(infos)
 
 
-tickers_acoes = ['ITSA4', 'BBDC4', 'EGIE3', 'AESB3', 'TAEE11', 'TASA4', 'KLBN4', 'SAPR4', 'WIZC3']
+tickers_acoes = ['ITSA4', 'BBDC4', 'EGIE3', 'AESB3', 'TAEE11', 'TASA4', 'KLBN4', 'SAPR4', 'WIZC3', 'ALUP11', 'PETR4']
 for i in tickers_acoes:
     dy_ano_acoes(i)
     time.sleep(1)
