@@ -49,7 +49,7 @@ def tesouro():
         dado = dado.replace('R$ ', '')
         dado = " ".join(line.strip() for line in dado.splitlines())
         dado = dado.replace(' ', '')
-        print(f'{tesouro} - {dado}')
+        # print(f'{tesouro} - {dado}')
         with open("csv\\tesouro.csv", 'a+', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
             infos = [f'{tesouro}', f'{dado}']
@@ -62,4 +62,4 @@ def tesouro():
         time.sleep(1)
 
     navegador.quit()
-    print('Tesouro - OK.')
+    print('tesouro.csv - OK.')

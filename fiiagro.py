@@ -42,9 +42,8 @@ def fii_agro():
 
     with open('csv\\fiiagro.csv', 'a+', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
-        index = ['Ticker', 'DY', 'DYOC', 'P/VP', 'Dividendo']
+        index = ['Ticker', 'DY', 'DY_year', 'P/VP', 'Dividendo']
         writer.writerow(index)
-        csv_file.close()
 
     # Dados
     def fiiagro(ticker):
@@ -54,11 +53,11 @@ def fii_agro():
         dy = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[1]/strong'))).get_attribute("innerHTML")
 
-        dyoc = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
+        dy_year = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="main-2"]/div[2]/div[1]/div[4]/div/div[2]/div/span[2]'))).get_attribute("innerHTML")
-        dyoc = dyoc.replace('R$ ', '')
-        dyoc = " ".join(line.strip() for line in dyoc.splitlines())
-        dyoc = dyoc.replace(' ', '')
+        dy_year = dy_year.replace('R$ ', '')
+        dy_year = " ".join(line.strip() for line in dy_year.splitlines())
+        dy_year = dy_year.replace(' ', '')
 
         p_vp = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="main-2"]/div[2]/div[4]/div/div[2]/div/div[1]/strong'))).get_attribute("innerHTML")
@@ -66,17 +65,16 @@ def fii_agro():
         dividendo = WebDriverWait(navegador, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="dy-info"]/div/div[1]/strong'))).get_attribute("innerHTML")
 
-        print(f'{ticker} - DY: {dy}% - DYOC: {dyoc} - P/VP: {p_vp} - Dividendo: {dividendo}')
+        # print(f'{ticker} - DY: {dy}% - DY_year: {dy_year} - P/VP: {p_vp} - Dividendo: {dividendo}')
 
         with open('csv\\fiiagro.csv', 'a+', newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
-            infos = [f'{ticker}', f'{dy}', f'{dyoc}', f'{p_vp}', f'{dividendo}']
+            infos = [f'{ticker}', f'{dy}', f'{dy_year}', f'{p_vp}', f'{dividendo}']
             writer.writerow(infos)
-            csv_file.close()
 
     tickers_fiiagro = ['SNAG11', 'KNCA11', 'RZAG11']
     for i in tickers_fiiagro:
         fiiagro(i)
         time.sleep(1)
 
-    print("FII's AGRO - OK")
+    print("fiiagro.csv - OK")

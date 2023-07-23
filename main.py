@@ -99,8 +99,8 @@ def get_csv_rename(url, nome):
     # Renomeando ultimo csv
     lista_arquivos = glob.glob(download_folder + '\*')
     ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
-    os.remove(f'csv\{nome}')
-    os.rename(ultimo_arquivo, f'csv\{nome}')
+    os.remove(f'csv\\{nome}')
+    os.rename(ultimo_arquivo, f'csv\\{nome}')
     print(f"{nome} - OK.")
 
 
@@ -168,14 +168,9 @@ def atualizar():
     print(f'Atualização a cada {intervalo / 60:.2f} minutos')
     print(f'Última atualização: {last_update}.')
 
-    collected = gc.collect()
-    print("Garbage collector: collected",
-          "%d objects." % collected)
-
 
 # Rodar em loop
 # i = 0
-
 
 def loop():
     global i
