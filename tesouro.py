@@ -36,11 +36,11 @@ chrome_options.add_argument("start-maximized")
 chrome_options.add_argument("disable-infobars")
 navegador = webdriver.Chrome(service=servico, options=chrome_options)
 
-# os.remove("csv\\tesouro.csv")
-
 
 # Tesouro
 def tesouro():
+    os.remove("csv\\tesouro.csv")
+
     def valor_tesouro(tesouro):
         url = f'https://statusinvest.com.br/tesouro/{tesouro}/'
         navegador.get(f'{url}')
@@ -55,7 +55,7 @@ def tesouro():
             infos = [f'{tesouro}', f'{dado}']
             writer.writerow(infos)
 
-    tickers_fiisagro = ['tesouro-prefixado-2025']
+    tickers_fiisagro = ['tesouro-prefixado-2025', 'tesouro-ipca-2045']
 
     for i in tickers_fiisagro:
         valor_tesouro(i)

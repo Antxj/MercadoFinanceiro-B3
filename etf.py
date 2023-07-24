@@ -71,4 +71,4 @@ def etf_eua():
         etf(i)
         time.sleep(1)
 
-    print('ETFs EUA - OK.')
+    print('etf.csv - OK.')

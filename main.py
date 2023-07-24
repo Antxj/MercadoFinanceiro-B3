@@ -97,7 +97,7 @@ def get_csv_rename(url, nome):
     time.sleep(3)
 
     # Renomeando ultimo csv
-    lista_arquivos = glob.glob(download_folder + '\*')
+    lista_arquivos = glob.glob(download_folder + '\\*')
     ultimo_arquivo = max(lista_arquivos, key=os.path.getmtime)
     os.remove(f'csv\\{nome}')
     os.rename(ultimo_arquivo, f'csv\\{nome}')
