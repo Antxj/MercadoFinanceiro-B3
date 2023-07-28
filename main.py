@@ -10,12 +10,7 @@ from fake_useragent import UserAgent
 import glob
 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 import etf
 import tesouro
@@ -40,11 +35,12 @@ download_folder = (os.path.dirname(full_path)) + "\csv"
 print(f'O arquivo será salvo em {download_folder}')
 
 # Chrome
-# ua = UserAgent(browsers=['chrome'])
-# user_agent = ua.random
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
+ua = UserAgent(browsers=['chrome'])
+user_agent = ua.chrome
+# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 # chrome_options.add_argument("--headless")  # Headless mode
-servico = Service(ChromeDriverManager().install())
+chromedriver_path = 'chromedriver.exe'
+servico = ChromeService(executable_path=chromedriver_path)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
 # chrome_options.add_argument("--incognito")
@@ -72,7 +68,7 @@ url_reits = 'https://statusinvest.com.br/category/AdvancedSearchResultExport?sea
 # Intervalo atualização
 # intervalo = 600  # 14400s = 4h / 7200s = 2h / 3600s = 1h
 last_update = datetime.datetime.now().strftime("%d/%m/%Y ás %H:%M:%S")
-     
+
 # Pasta .git e python de acordo com o OS
 my_os = platform.system()  # Windows / Linux
 
@@ -143,7 +139,7 @@ Exemplo de uso no Googlesheets:
 ![img_2.png](exemplo.png)
 
 """
-    
+
     leitor = open("README.md", "w")  # encoding="cp1252" testar
     leitor.write(readme_conteudo)
     leitor.close()
@@ -186,4 +182,3 @@ def loop():
 
 while True:
     loop()
-    

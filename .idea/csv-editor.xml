@@ -38,13 +38,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\csv\dyoc.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\csv\fiiagro.csv">
           <value>
             <Attribute>
