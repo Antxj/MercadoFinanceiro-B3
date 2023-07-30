@@ -22,7 +22,8 @@ chromedriver_path = 'chromedriver.exe'
 servico = ChromeService(executable_path=chromedriver_path)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
-# chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--headless")  # Headless mode
+chrome_options.add_argument("--incognito")
 chrome_options.add_argument("--disable-notifications")
 chrome_options.add_argument("--disable-popup-blocking")
 chrome_options.add_argument("--disable-gpu")

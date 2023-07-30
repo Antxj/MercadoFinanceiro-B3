@@ -17,12 +17,13 @@ from selenium.webdriver.common.keys import Keys
 ua = UserAgent(browsers=['chrome'])
 user_agent = ua.chrome
 # user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
-# chrome_options.add_argument("--headless")  # Headless mode
+
 chromedriver_path = 'chromedriver.exe'
 servico = ChromeService(executable_path=chromedriver_path)
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument(f"user-agent={user_agent}")  # User Agent
-# chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--incognito")
+chrome_options.add_argument("--headless")  # Headless mode
 chrome_options.add_argument("--disable-notifications")
 chrome_options.add_argument("--disable-popup-blocking")
 chrome_options.add_argument("--disable-gpu")
