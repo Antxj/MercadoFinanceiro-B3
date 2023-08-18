@@ -177,7 +177,6 @@ def loop():
     if i == 2:
         navegador.quit()
         quit()
-        print('Finalizado.')
 
 
 while True:
